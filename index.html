@@ -10,11 +10,7 @@
 	</head>
 	<body>
 		<div id="app">
-			<view-story title="lorem"></view-story>
-			
-			<view-passage speaker="Georg" text="lorem ipsum"></view-passage>
-			
-			<view-mcq question="Who started the fire?" v-bind:answers="['us', 'not us']" v-bind:index-of-correct="1"></view-mcq>
+			<view-story v-bind:story-object="sampleStory"></view-story>
 		</div>
 	</body>
 </html>
