@@ -26,6 +26,7 @@ Vue.component("edit-passage", {
 				<button v-bind:disabled="index == 0" @click="$root.moveUp(index)">Up</button>
 				<button v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">Down</button>
 			</p>
+			<p><button @click="$root.remove(index)">Remove</button></p>
 		</div>
 	`
 });
@@ -49,6 +50,7 @@ Vue.component("edit-mcq", {
 				<button v-bind:disabled="index == 0" @click="$root.moveUp(index)">Up</button>
 				<button v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">Down</button>
 			</p>
+			<p><button @click="$root.remove(index)">Remove</button></p>
 		</div>
 	`
 });
@@ -84,6 +86,9 @@ var app = new Vue({
 			var temp = this.story.items[index + 1];
 			this.$set(this.story.items, index + 1, this.story.items[index]);
 			this.$set(this.story.items, index, temp);
+		},
+		remove: function(index) {
+			this.story.items.splice(index, 1);
 		}
 	}
 });
