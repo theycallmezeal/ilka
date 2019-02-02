@@ -27,7 +27,7 @@ Vue.component("edit-passage", {
 });
 
 Vue.component("edit-mcq", {
-	props: ["index", "question", "translation", "answers", "answerTranslations", "indexOfCorrect", ],
+	props: ["question", "translation", "answers", "answerTranslations", "indexOfCorrect" ],
 	methods: {
 		updateArray: function(array, index, value, string) {
 			this.$set(array, index, value);
@@ -44,6 +44,7 @@ Vue.component("edit-mcq", {
 				<input :value="answer" @input="updateArray(this.answers, i, $event.target.value, 'update:answers')">
 				<input :value="answerTranslations[i]" @input="updateArray(this.answerTranslations, i, $event.target.value, 'update:answerTranslations')">
 			</p>
+			<button @click="$root.addAnswer(index)">Add Answer</button>
 		</div>
 	`
 });
@@ -52,13 +53,8 @@ var app = new Vue({
 	el: "#app",
 	data: {
 		story: {
-			title: "beepis",
-			items: [
-				new Passage("Georg", "lol your house is on fire", "lol dein Haus ist in Brand geraten"),
-				new Passage("Vicky", "dude wtf", "kerl was zum Teufel"),
-				new MCQ("Whose house is on fire?", "Wessen Haus ist in Brand geraten?", ["Georg", "Vicky", "Jack", "Alex", "AJ", "Jacob"], ["Georg", "Vicky", "Jack", "Alex", "AJ", "Jacob"], 0),
-				new Passage("Georg", "ayy lmao", "\u00e4yy lm\u00e4o")
-			]
+			title: "",
+			items: []
 		}
 	},
 	methods: {
