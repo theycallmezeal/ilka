@@ -50,7 +50,7 @@ Vue.component("edit-mcq", {
 var app = new Vue({
 	el: "#app",
 	data: {
-		sampleStory: {
+		story: {
 			title: "beepis",
 			items: [
 				new Passage("Georg", "lol your house is on fire"),
