@@ -72,6 +72,12 @@ var app = new Vue({
 		}
 	},
 	methods: {
+		addPassage: function() {
+			this.story.items.push(new Passage('', '', '', ''));
+		},
+		addMCQ: function() {
+			this.story.items.push(new MCQ('', '', [''], [''], 0));
+		},
 		addAnswer: function(i) {
 			var mc = this.story.items[i];
 			mc.answers.push("");
