@@ -1,7 +1,6 @@
 	meSpeak.loadConfig("mespeak_config.json");
 	meSpeak.loadVoice("en.json");
 
-	var spoken;
 
     function ipa(uipa) {
 
@@ -137,10 +136,11 @@
         //console.log(mappings[i].src + uipa);
       }
       console.log(uipa);
-      spoken = meSpeak.speak('[['+uipa+']]', { 'rawdata': 'mime' });
+      var spoken = meSpeak.speak('[['+uipa+']]', { 'rawdata': 'mime' });
       if (spoken == null) {
         alert("An error occurred: speaking failed.");
       }
 
       meSpeak.play(spoken);
+	  return spoken
     }
