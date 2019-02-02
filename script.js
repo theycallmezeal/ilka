@@ -70,7 +70,7 @@ Vue.component("view-mcq", {
 var app = new Vue({
 	el: "#app",
 	data: {
-		sampleStory: {
+		story: {
 			title: "beepis",
 			items: [
 				new Passage("Georg", "lol your house is on fire"),
@@ -85,7 +85,7 @@ var app = new Vue({
 	
 	methods: {
 		incProgress: function() {
-			if (this.progress + 1 <= this.sampleStory.items.length) {
+			if (this.progress + 1 <= this.story.items.length) {
 				this.progress++;
 			}
 			console.log(this.progress);
@@ -101,7 +101,7 @@ var app = new Vue({
 	
 	computed: {
 		visibleItems: function() {
-			return this.sampleStory.items.slice(0, this.progress);
+			return this.story.items.slice(0, this.progress);
 		}
 	}
 });
