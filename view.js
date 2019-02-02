@@ -21,7 +21,7 @@ Vue.component("view-passage", {
 	template: `
 		<div class="passage">
 			<p class="passage-speaker">{{ speaker }}</p>
-			<p>{{ text }} <span v-on:click="toggle = !toggle">(?)</span></p>
+			<p>{{ text }} <span @click="toggle = !toggle">(?)</span></p>
 			<p v-if="toggle">{{ translation }}</p>
 		</div>
 	`
@@ -43,7 +43,7 @@ Vue.component("view-mcq", {
 	},
 	template: `
 		<div class="mcq">
-			<p class="mcq-question">{{ question }} <span v-on:click="toggle = !toggle">(?)</span></p>
+			<p class="mcq-question">{{ question }} <span @click="toggle = !toggle">(?)</span></p>
 			<p class="mcq-question" v-if="toggle">{{ translation }}</p>
 			<view-mcq-answer v-for="(answer, i) in answers" v-bind:answer="answer" v-bind:answerTranslation="answerTranslations[i]" v-bind:isCorrect="i == indexOfCorrect"></view-mcq-answer>
 		</div>
@@ -60,12 +60,12 @@ Vue.component("view-mcq-answer", {
 	},
 	template: `
 		<div class="mcq-answer">
-			<p>{{ answer }} <span v-on:click="toggle = !toggle">(?)</span> <span v-if="toggle">{{ answerTranslation }}</span></p>
+			<p>{{ answer }} <span @click="toggle = !toggle">(?)</span> <span v-if="toggle">{{ answerTranslation }}</span></p>
 			<p>
 				<span v-if="hasBeenSelected && isCorrect">&check;</span>
 				<span v-else-if="hasBeenSelected">X</span>
-				<button v-else-if="!hasBeenSelected && isCorrect" v-on:click="$parent.revealAll()">&nbsp;</button>
-				<button v-else v-on:click="hasBeenSelected = true">&nbsp;</button>
+				<button v-else-if="!hasBeenSelected && isCorrect" @click="$parent.revealAll()">&nbsp;</button>
+				<button v-else @click="hasBeenSelected = true">&nbsp;</button>
 			</p>
 		</div>
 	`
