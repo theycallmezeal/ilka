@@ -16,8 +16,8 @@ Vue.component("edit-story", {
 Vue.component("edit-passage", {
 	props: ["index", "speaker", "text", "translation", "ipa"],
 	template: `
-		<div class="passage">
-			<p>speaker:
+		<div class="edit-passage">
+			<p>
 			<input type="text" :value="speaker" @input="$emit('update:speaker', $event.target.value)">
 			</p>
 			<input type="text" :value="text" @input="$emit('update:text', $event.target.value)">
@@ -40,7 +40,7 @@ Vue.component("edit-mcq", {
 	methods: {
 	},
 	template: `
-		<div class="mcq">
+		<div class="edit-mcq">
 			<p>question:
 			<input type="text" :value="question" @input="$emit('update:question', $event.target.value)">
 			Translation: <input type="text" :value="translation" @input="$emit('update:translation', $event.target.value)">
