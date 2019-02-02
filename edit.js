@@ -35,8 +35,8 @@ Vue.component("edit-mcq", {
 			Translation: <input v-model="translation">
 			</p>
 			<p v-for="(answer, i) in answers">
-				<input v-model="answers[i]">
 				<span v-if="i == indexOfCorrect">(correct!)</span>
+				<input v-model="answers[i]">
 				Translation: <input v-model="answerTranslations[i]">
 				<button v-on:click="answers.splice(i, 1)">Remove</button>
 			</p>
