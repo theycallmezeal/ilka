@@ -22,7 +22,7 @@ Vue.component("view-passage", {
 		<div class="passage">
 			<p class="passage-speaker">{{ speaker }}</p>
 			<p>{{ text }} <span @click="toggle = !toggle">(?)</span></p>
-			<p @click="$root.speak(ipa)">Listen</p>
+			<p @click="$root.speak(ipa)">&#128266;</p>
 			<p v-if="toggle">{{ translation }}</p>
 		</div>
 	`
