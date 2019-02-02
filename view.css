@@ -1,5 +1,17 @@
+.passage, .mcq {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.passage {
+	font-family: var(--serif-fonts);
+}
+
 .passage-speaker {
 	text-transform: uppercase;
+	font-weight: bold;
+	color: var(--gray);
+	font-family: var(--sans-fonts);
 }
 
 .mcq {

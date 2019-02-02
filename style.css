@@ -1,4 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif');
+
+:root {
+	--sans-fonts: "Noto Sans", sans-serif;
+	--serif-fonts: "Noto Serif", serif;
+	
+	--lightest-gray: #fafafa;
+	--gray: #666;
+	--dark-gray: #333;
+}
+
 body {
 	margin-left: 20%;
 	margin-right: 20%;
+	font-family: var(--serif-fonts);
+	background-color: var(--lightest-gray);
+	color: var(--dark-gray);
+}
+
+input, button {
+	font-family: var(--sans-fonts);
 }
