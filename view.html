@@ -11,6 +11,7 @@
 	</head>
 	<body>
 		<div id="app">
+			<input type="file" multiple="false" id="file" onChange="load()">
 			<view-story v-bind:story-object="story"></view-story>
 			<p><button v-on:click="decProgress()">Previous</button><button v-on:click="incProgress()">Next</button></p>
 		</div>
