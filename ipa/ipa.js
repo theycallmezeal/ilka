@@ -2,7 +2,7 @@
 	meSpeak.loadVoice("ipa/en.json");
 
 
-	function ipa(uipa) {
+	function speak(uipa) {
 
 	  // nothing to process		 
 	  if (uipa == null || uipa.length == 0) {
