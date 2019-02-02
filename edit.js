@@ -14,23 +14,25 @@ Vue.component("edit-story", {
 });
 
 Vue.component("edit-passage", {
-	props: ["speaker", "text"],
+	props: ["speaker", "text", "translation"],
 	template: `
 		<div class="passage">
 			<p>speaker:
 			<input v-model="speaker">
 			</p>
 			<input v-model="text">
+			Translation: <input v-model="translation">
 		</div>
 	`
 });
 
 Vue.component("edit-mcq", {
-	props: ["question", "answers", "indexOfCorrect"],
+	props: ["question", "translation", "answers", "indexOfCorrect"],
 	template: `
 		<div class="mcq">
 			<p>question:
 			<input v-model="question">
+			Translation: <input v-model="translation">
 			</p>
 			<p v-for="(answer, i) in answers">
 				<input v-model="answers[i]">
