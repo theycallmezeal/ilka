@@ -4,8 +4,8 @@ Vue.component("view-story", {
 		<div>
 			<p>title: {{ storyObject.title }}</p>
 			<div v-for="item in this.$parent.visibleItems">
-				<view-passage v-if="item instanceof Passage" v-bind:speaker="item.speaker" v-bind:text="item.text" v-bind:translation="item.translation"></view-passage>
-				<view-mcq v-if="item instanceof MCQ" v-bind:question="item.question" v-bind:translation="item.translation" v-bind:answers="item.answers" v-bind:answerTranslations="item.answerTranslations" v-bind:indexOfCorrect="item.indexOfCorrect"></view-mcq>
+				<view-passage v-if="item.type == 'passage'" v-bind:speaker="item.speaker" v-bind:text="item.text" v-bind:translation="item.translation"></view-passage>
+				<view-mcq v-if="item.type == 'mcq'" v-bind:question="item.question" v-bind:translation="item.translation" v-bind:answers="item.answers" v-bind:answerTranslations="item.answerTranslations" v-bind:indexOfCorrect="item.indexOfCorrect"></view-mcq>
 			</div>
 		</div>
 	`

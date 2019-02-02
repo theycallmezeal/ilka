@@ -6,8 +6,8 @@ Vue.component("edit-story", {
 				<input v-model="storyObject.title">
 			</p>
 			<div v-for="item in storyObject.items">
-				<edit-passage v-if="item instanceof Passage" v-bind:speaker="item.speaker" v-bind:text="item.text" v-bind:translation="item.translation"></edit-passage>
-				<edit-mcq v-if="item instanceof MCQ" v-bind:question="item.question" v-bind:answers="item.answers" v-bind:indexOfCorrect="item.indexOfCorrect" v-bind:answerTranslations="item.answerTranslations"></edit-mcq>
+				<edit-passage v-if="item.type == 'passage'" v-bind:speaker="item.speaker" v-bind:text="item.text" v-bind:translation="item.translation"></edit-passage>
+				<edit-mcq v-if="item.type == 'mcq'" v-bind:question="item.question" v-bind:answers="item.answers" v-bind:indexOfCorrect="item.indexOfCorrect" v-bind:answerTranslations="item.answerTranslations"></edit-mcq>
 			</div>
 		</div>
 	`

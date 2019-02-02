@@ -1,5 +1,8 @@
+var jsonItems = null;
+
 class Passage {
 	constructor(speaker, text, translation) {
+		this.type = "passage";
 		this.speaker = speaker;
 		this.text = text;
 		this.translation = translation;
@@ -8,6 +11,7 @@ class Passage {
 
 class MCQ {
 	constructor(question, translation, answers, answerTranslations, indexOfCorrect) {
+		this.type = "mcq";
 		this.question = question;
 		this.translation = translation;
 		this.answers = answers;
@@ -40,8 +44,14 @@ function load() {
 		reader.readAsText(file, "UTF-8");
 		reader.onload = function (evt) {
             var j = JSON.parse(evt.target.result);
+			jsonItems = j.items;
+			console.log(jsonItems);
 			app.story.title = j.title;
-			app.story.items = j.items;
+			app.story.items = [];
+			for (i in j.items) {
+				console.log("attempting to add " + j.items[i]);
+				app.story.items.push(j.items[i]);
+			}
 		}
 	}
 }
