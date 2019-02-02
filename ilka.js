@@ -1,13 +1,15 @@
 class Passage {
-	constructor(speaker, text) {
+	constructor(speaker, text, translation) {
 		this.speaker = speaker;
 		this.text = text;
+		this.translation = translation;
 	}
 }
 
 class MCQ {
-	constructor(question, answers, indexOfCorrect) {
+	constructor(question, translation, answers, indexOfCorrect) {
 		this.question = question;
+		this.translation = translation;
 		this.answers = answers;
 		this.indexOfCorrect = indexOfCorrect;
 	}
