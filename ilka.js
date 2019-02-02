@@ -39,10 +39,9 @@ function load() {
 		var reader = new FileReader();
 		reader.readAsText(file, "UTF-8");
 		reader.onload = function (evt) {
-			console.log(app.story);
-			var j = JSON.parse(evt.target.result);
-			console.log(j);
-			app.story = j;
+            var j = JSON.parse(evt.target.result);
+			app.story.title = j.title;
+			app.story.items = j.items;
 		}
 	}
 }
