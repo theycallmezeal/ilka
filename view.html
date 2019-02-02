@@ -17,8 +17,8 @@
 			<input type="file" multiple="false" id="file" onChange="load()">
 			<view-story v-bind:story-object="story"></view-story>
 			<p v-if="storyUploaded">
-				<button v-on:click="decProgress()" v-bind:disabled="progress == 0">&uarr;</button>
-				<button v-on:click="incProgress()" v-bind:disabled="progress == story.items.length">&darr;</button>
+				<button class="icon-button" v-on:click="decProgress()" v-bind:disabled="progress == 0">&uarr;</button>
+				<button class="icon-button" v-on:click="incProgress()" v-bind:disabled="progress == story.items.length">&darr;</button>
 			</p>
 		</div>
 	</body>

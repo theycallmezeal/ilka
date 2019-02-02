@@ -21,8 +21,8 @@ Vue.component("view-passage", {
 	template: `
 		<div class="passage">
 			<p class="passage-speaker">{{ speaker }}</p>
-			<p>{{ text }} <span @click="toggle = !toggle">&#127757;</span> <span v-if="ipa && ipa != ''" @click="$root.speak(ipa)">&#128266;</span></p>
-			<p v-if="toggle">{{ translation }}</p>
+			<p>{{ text }} <button class="icon-button" @click="toggle = !toggle">&#127757;</button> <button class="icon-button" v-if="ipa && ipa != ''" @click="$root.speak(ipa)">&#128266;</button></p>
+			<p v-if="toggle" class="translation">{{ translation }}</p>
 		</div>
 	`
 });
@@ -43,7 +43,7 @@ Vue.component("view-mcq", {
 	},
 	template: `
 		<div class="mcq">
-			<p class="mcq-question">{{ question }} <span @click="toggle = !toggle">&#127757;</span></p>
+			<p class="mcq-question">{{ question }} <button class="icon-button" @click="toggle = !toggle">&#127757;</button></p>
 			<p class="mcq-question translation" v-if="toggle">{{ translation }}</p>
 			<view-mcq-answer v-for="(answer, i) in answers" v-bind:answer="answer" v-bind:answerTranslation="answerTranslations[i]" v-bind:isCorrect="i == indexOfCorrect"></view-mcq-answer>
 		</div>
@@ -60,12 +60,12 @@ Vue.component("view-mcq-answer", {
 	},
 	template: `
 		<div class="mcq-answer">
-			<p>{{ answer }} <span @click="toggle = !toggle">&#127757;</span> <span v-if="toggle" class="translation">{{ answerTranslation }}</span></p>
-			<p class="mcq-feedback">
-				<span class="mcq-feedback-correct" v-if="hasBeenSelected && isCorrect">&check;</span>
-				<span class="mcq-feedback-wrong" v-else-if="hasBeenSelected">&#10005;</span>
-				<span v-else-if="!hasBeenSelected && isCorrect" @click="$parent.revealAll()">&#9711;</span>
-				<span v-else @click="hasBeenSelected = true">&#9711;</span>
+			<p>{{ answer }} <button class="icon-button" @click="toggle = !toggle">&#127757;</button> <span v-if="toggle" class="translation">{{ answerTranslation }}</span></p>
+			<p>
+				<button class="icon-button mcq-feedback-correct" v-if="hasBeenSelected && isCorrect">&check;</button>
+				<button class="icon-button mcq-feedback-wrong" v-else-if="hasBeenSelected">&#10005;</button>
+				<button class="icon-button" v-else-if="!hasBeenSelected && isCorrect" @click="$parent.revealAll()">&#9711;</button>
+				<button class="icon-button" v-else @click="hasBeenSelected = true">&#9711;</button>
 			</p>
 		</div>
 	`

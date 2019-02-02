@@ -4,12 +4,19 @@
 	--sans-fonts: "Noto Sans", sans-serif;
 	--serif-fonts: "Noto Serif", serif;
 	
-	--lightest-gray: #fafafa;
+	--lightest-gray: #fcfcfc;
+	--light-gray: #eee;
 	--gray: #666;
 	--dark-gray: #333;
 	
 	--light-accent: #d6fffc;
 	--dark-accent: #1c968d;
+	
+	--light-correct: #b7f7d1;
+	--dark-correct: #0f8e43;
+	
+	--light-wrong: #f9cac5;
+	--dark-wrong: #9b2417;
 }
 
 body {
@@ -31,9 +38,21 @@ input[type="text"] {
 }
 
 button {
-	border: solid 1px var(--dark-accent);
-	color: var(--dark-accent);
+	border: solid 1px var(--dark-gray);
+	color: var(--dark-gray);
 	border-radius: 5px;
-	background-color: var(--light-accent);
+	background-color: var(--light-gray);
 	padding: 10px;
+}
+
+.icon-button {
+	border: none;
+	font-weight: bold;
+	box-shadow: 1px 1px var(--gray);
+	padding: 0px;
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	text-align: center;
+	vertical-align: center;
 }
