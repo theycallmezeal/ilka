@@ -5,7 +5,7 @@ Vue.component("view-story", {
 			<p>title: {{ storyObject.title }}</p>
 			<div v-for="item in this.$parent.visibleItems">
 				<view-passage v-if="item instanceof Passage" v-bind:speaker="item.speaker" v-bind:text="item.text" v-bind:translation="item.translation"></view-passage>
-				<view-mcq v-if="item instanceof MCQ" v-bind:question="item.question" v-bind:translation="item.translation" v-bind:answers="item.answers" v-bind:indexOfCorrect="item.indexOfCorrect"></view-mcq>
+				<view-mcq v-if="item instanceof MCQ" v-bind:question="item.question" v-bind:translation="item.translation" v-bind:answers="item.answers" v-bind:answerTranslations="item.answerTranslations" v-bind:indexOfCorrect="item.indexOfCorrect"></view-mcq>
 			</div>
 		</div>
 	`
@@ -23,7 +23,7 @@ Vue.component("view-passage", {
 });
 
 Vue.component("view-mcq", {
-	props: ["question", "translation", "answers", "indexOfCorrect"],
+	props: ["question", "translation", "answers", "answerTranslations", "indexOfCorrect"],
 	data: function() {
 		return {
 			hasBeenSelected: new Array(this.$props.answers.length).fill(false)
@@ -40,7 +40,7 @@ Vue.component("view-mcq", {
 		<div class="mcq">
 			<p>question: {{ question }}</p>
 			<p>translation: {{ translation }}</p>
-			<p v-for="(answer, i) in answers">{{ answer }}
+			<p v-for="(answer, i) in answers">{{ answer }} ({{ answerTranslations[i] }})
 				<span v-if="hasBeenSelected[i] && i == indexOfCorrect">correct!</span>
 				<span v-else-if="hasBeenSelected[i]">wrong :(</span>
 				<button v-else-if="!hasBeenSelected[i] && i == indexOfCorrect" v-on:click="revealAll()">CLICK MEH</button>
@@ -59,7 +59,7 @@ var app = new Vue({
 			items: [
 				new Passage("Georg", "lol your house is on fire", "lol dein Haus ist in Brand geraten"),
 				new Passage("Vicky", "dude wtf", "kerl was zum Teufel"),
-				new MCQ("Whose house is on fire?", "Wessen Haus ist in Brand geraten?", ["Georg", "Vicky", "Jack", "Alex", "AJ", "Jacob"], 0),
+				new MCQ("Whose house is on fire?", "Wessen Haus ist in Brand geraten?", ["Georg", "Vicky", "Jack", "Alex", "AJ", "Jacob"], ["Georg", "Vicky", "Jack", "Alex", "AJ", "Jacob"], 0),
 				new Passage("Georg", "ayy lmao", "\u00e4yy lm\u00e4o")
 			]
 		},

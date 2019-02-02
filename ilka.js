@@ -7,10 +7,11 @@ class Passage {
 }
 
 class MCQ {
-	constructor(question, translation, answers, indexOfCorrect) {
+	constructor(question, translation, answers, answerTranslations, indexOfCorrect) {
 		this.question = question;
 		this.translation = translation;
 		this.answers = answers;
+		this.answerTranslations = answerTranslations;
 		this.indexOfCorrect = indexOfCorrect;
 	}
 }
