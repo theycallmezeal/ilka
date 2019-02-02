@@ -41,10 +41,27 @@ Vue.component("view-passage", {
 
 Vue.component("view-mcq", {
 	props: ["question", "answers", "indexOfCorrect"],
+	data: function() {
+		return {
+			hasBeenSelected: new Array(this.$props.answers.length).fill(false)
+		}
+	},
+	methods: {
+		revealAll: function() {
+			for (var i in this.hasBeenSelected) {
+				this.$set(this.hasBeenSelected, i, true);
+			}
+		}
+	},
 	template: `
 		<div>
 			<p>question: {{ question }}</p>
-			<p v-for="(answer, i) in answers">{{ answer }} <span v-if="i == indexOfCorrect">(correct!)</span></p>
+			<p v-for="(answer, i) in answers">{{ answer }}
+				<span v-if="hasBeenSelected[i] && i == indexOfCorrect">correct!</span>
+				<span v-else-if="hasBeenSelected[i]">wrong :(</span>
+				<button v-else-if="!hasBeenSelected[i] && i == indexOfCorrect" v-on:click="revealAll()">CLICK MEH</button>
+				<button v-else v-on:click="$set(hasBeenSelected, i, true)">CLICK MEH</button>
+			</p>
 			<p>index of correct: {{ indexOfCorrect }}</p>
 		</div>
 	`
@@ -58,7 +75,7 @@ var app = new Vue({
 			items: [
 				new Passage("Georg", "lol your house is on fire"),
 				new Passage("Vicky", "dude wtf"),
-				new MCQ("Whose house is on fire?", ["Georg", "Vicky"], 0),
+				new MCQ("Whose house is on fire?", ["Georg", "Vicky", "Jack", "Alex", "AJ", "Jacob"], 0),
 				new Passage("Georg", "ayy lmao")
 			]
 		},
@@ -68,7 +85,7 @@ var app = new Vue({
 	
 	methods: {
 		incProgress: function() {
-			if (this.progress + 1 < this.sampleStory.items.length) {
+			if (this.progress + 1 <= this.sampleStory.items.length) {
 				this.progress++;
 			}
 			console.log(this.progress);
