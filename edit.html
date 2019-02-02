@@ -15,6 +15,7 @@
 			<button type="button" v-on:click="story.items.push(new Passage('Speaker', 'Text'))">New Passage</button>
 			<button type="button" v-on:click="story.items.push(new MCQ('Question', ['answers'], 0))">New Multiple-Choice Question</button>
 			<button onClick="save()">Save</button>
+			<input type="file" multiple="false" id="file" onChange="load()">
 		</div>
 	</body>
 </html>
