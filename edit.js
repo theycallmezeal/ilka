@@ -6,7 +6,7 @@ Vue.component("edit-story", {
 				<input v-model="storyObject.title">
 			</p>
 			<div v-for="(item, index) in storyObject.items">
-				<edit-passage v-if="item.type == 'passage'" v-bind:index="index" :speaker.sync="item.speaker" :text.sync="item.text" :translation.sync="item.translation"></edit-passage>
+				<edit-passage v-if="item.type == 'passage'" v-bind:index="index" :speaker.sync="item.speaker" :text.sync="item.text" :translation.sync="item.translation" :ipa.sync="item.ipa"></edit-passage>
 				<edit-mcq v-if="item.type == 'mcq'" v-bind:index="index" :question.sync="item.question" :translation.sync="item.translation" :answers.sync="item.answers" :indexOfCorrect.sync="item.indexOfCorrect" :answerTranslations.sync="item.answerTranslations"></edit-mcq>
 			</div>
 		</div>
@@ -14,13 +14,17 @@ Vue.component("edit-story", {
 });
 
 Vue.component("edit-passage", {
-	props: ["index", "speaker", "text", "translation"],
+	props: ["index", "speaker", "text", "translation", "ipa"],
 	template: `
 		<div class="passage">
 			<p>speaker:
 			<input :value="speaker" @input="$emit('update:speaker', $event.target.value)">
 			</p>
 			<input :value="text" @input="$emit('update:text', $event.target.value)">
+			<p>
+			IPA:
+			<input :value="ipa" @input="$emit('update:ipa', $event.target.value)">
+			</p>
 			Translation: <input :value="translation" @input="$emit('update:translation', $event.target.value)" >
 			<p>
 				<button v-bind:disabled="index == 0" @click="$root.moveUp(index)">Up</button>

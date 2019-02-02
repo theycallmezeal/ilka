@@ -12,7 +12,7 @@
 	<body>
 		<div id="app">
 			<edit-story v-bind:story-object="story"></edit-story>
-			<button type="button" @click="story.items.push(new Passage('Speaker', 'Text', ''))">New Passage</button>
+			<button type="button" @click="story.items.push(new Passage('Speaker', 'Text', '', ''))">New Passage</button>
 			<button type="button" @click="story.items.push(new MCQ('Question', '', ['answers'], ['translation'], 0))">New Multiple-Choice Question</button>
 			<button onClick="save()">Save</button>
 			<input type="file" multiple="false" id="file" onChange="load()">
