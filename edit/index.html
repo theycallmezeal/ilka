@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Ilka Edit</title>
+		<meta charset="utf/8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1">
+		<link rel="stylesheet" href="style.css">
+		<script src="https://unpkg.com/vue" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<div id="app">
+			<edit-story v-bind:story-object="sampleStory"></edit-story>
+			<button type="button" v-on:click="sampleStory.items.push(new Passage('Speaker', 'Text'))">New Passage</button>
+			<button type="button" v-on:click="sampleStory.items.push(new MCQ('Question', ['answers'], 0))">New Multiple-Choice Question</button>
+		</div>
+	</body>
+</html>
