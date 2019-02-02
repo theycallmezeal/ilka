@@ -56,13 +56,8 @@ var app = new Vue({
 	el: "#app",
 	data: {
 		story: {
-			title: "beepis",
-			items: [
-				new Passage("Georg", "lol your house is on fire", "lol dein Haus ist in Brand geraten"),
-				new Passage("Vicky", "dude wtf", "kerl was zum Teufel"),
-				new MCQ("Whose house is on fire?", "Wessen Haus ist in Brand geraten?", ["Georg", "Vicky", "Jack", "Alex", "AJ", "Jacob"], ["Georg", "Vicky", "Jack", "Alex", "AJ", "Jacob"], 0),
-				new Passage("Georg", "ayy lmao", "\u00e4yy lm\u00e4o")
-			]
+			title: "",
+			items: []
 		},
-	}
+	},
 });
