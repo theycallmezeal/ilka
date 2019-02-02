@@ -14,7 +14,7 @@ Vue.component("view-story", {
 Vue.component("view-passage", {
 	props: ["speaker", "text"],
 	template: `
-		<div>
+		<div class="passage">
 			<p>speaker: {{ speaker }}</p>
 			<p>{{ text }}</p>
 		</div>
@@ -36,7 +36,7 @@ Vue.component("view-mcq", {
 		}
 	},
 	template: `
-		<div>
+		<div class="mcq">
 			<p>question: {{ question }}</p>
 			<p v-for="(answer, i) in answers">{{ answer }}
 				<span v-if="hasBeenSelected[i] && i == indexOfCorrect">correct!</span>
