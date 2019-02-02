@@ -30,7 +30,7 @@ function downloadObjectAsJson(exportObj, exportName) {
 	downloadAnchorNode.remove();
 }
 function save() {
-	downloadObjectAsJson(app.story, "story");
+	downloadObjectAsJson(app.story, app.story.title);
 }
 // Based on https://stackoverflow.com/a/754398
 function load() {
