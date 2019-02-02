@@ -12,7 +12,7 @@ Vue.component("view-story", {
 });
 
 Vue.component("view-passage", {
-	props: ["speaker", "text", "translation"],
+	props: ["speaker", "text", "translation", "ipa"],
 	data: function () {
 		return {
 			toggle: false
