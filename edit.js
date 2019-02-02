@@ -37,8 +37,8 @@ Vue.component("edit-mcq", {
 			Translation: <input :value="translation" @input="$emit('update:translation', $event.target.value)">
 			</p>
 			<p v-for="(answer, i) in answers">
-				<input :value="answer" @input="updateArray(this.answers, i, $event.target.value, 'update:answers')">
-				<input :value="answerTranslations[i]" @input="updateArray(this.answerTranslations, i, $event.target.value, 'update:answerTranslations')">
+				<input :value="answer" @input="$root.updateAns(index, i, $event.target.value)">
+				<input :value="answerTranslations[i]" @input="$root.updateAnsTrans(index, i, $event.target.value)">
 			</p>
 			<button @click="$root.addAnswer(index)">Add Answer</button>
 		</div>
@@ -55,9 +55,17 @@ var app = new Vue({
 	},
 	methods: {
 		addAnswer: function(i) {
-			var mc = this.story.items[i];
+			var mc = this.story.items[i]
 			mc.answers.push("new");
 			mc.answerTranslations.push("translate");
-		}
+		},
+		updateAns: function(index, question, val) {
+			var ans = this.story.items[index].answers;
+			this.$set(ans, question, val);
+		},
+		updateAnsTrans: function(index, question, val) {
+			var ans = this.story.items[index].answerTranslations;
+			this.$set(ans, question, val);
+		},
 	}
 });
