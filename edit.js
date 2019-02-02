@@ -5,8 +5,8 @@ Vue.component("edit-story", {
 			<p>title:
 				<input v-model="storyObject.title">
 			</p>
-			<div v-for="item in storyObject.items">
-				<edit-passage v-if="item.type == 'passage'" :speaker.sync="item.speaker" :text.sync="item.text" :translation.sync="item.translation"></edit-passage>
+			<div v-for="(item, index) in storyObject.items">
+				<edit-passage v-if="item.type == 'passage'" v-bind:index="index" :speaker.sync="item.speaker" :text.sync="item.text" :translation.sync="item.translation"></edit-passage>
 				<edit-mcq v-if="item.type == 'mcq'" :question.sync="item.question" :answers.sync="item.answers" :indexOfCorrect.sync="item.indexOfCorrect" :answerTranslations.sync="item.answerTranslations"></edit-mcq>
 			</div>
 		</div>
@@ -27,7 +27,7 @@ Vue.component("edit-passage", {
 });
 
 Vue.component("edit-mcq", {
-	props: ["question", "translation", "answers", "answerTranslations", "indexOfCorrect", ],
+	props: ["index", "question", "translation", "answers", "answerTranslations", "indexOfCorrect", ],
 	methods: {
 		updateArray: function(array, index, value, string) {
 			this.$set(array, index, value);
