@@ -37,3 +37,6 @@ button {
 	background-color: var(--light-accent);
 	padding: 10px;
 }
+.clickable {
+	cursor: pointer;
+}
