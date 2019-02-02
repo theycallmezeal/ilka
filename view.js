@@ -13,11 +13,16 @@ Vue.component("view-story", {
 
 Vue.component("view-passage", {
 	props: ["speaker", "text", "translation"],
+	data: function () {
+		return {
+			toggle: false
+		};
+	},
 	template: `
 		<div class="passage">
 			<p>speaker: {{ speaker }}</p>
-			<p>{{ text }}</p>
-			<p>{{ translation }}</p>
+			<p>{{ text }} <span v-on:click="toggle = !toggle">(?)</span></p>
+			<p v-if="toggle">{{ translation }}</p>
 		</div>
 	`
 });
@@ -26,27 +31,43 @@ Vue.component("view-mcq", {
 	props: ["question", "translation", "answers", "answerTranslations", "indexOfCorrect"],
 	data: function() {
 		return {
-			hasBeenSelected: new Array(this.$props.answers.length).fill(false)
+			toggle: false
 		}
 	},
 	methods: {
 		revealAll: function() {
-			for (var i in this.hasBeenSelected) {
-				this.$set(this.hasBeenSelected, i, true);
+			for (i in this.$children) {
+				this.$children[i].hasBeenSelected = true;
 			}
 		}
 	},
 	template: `
 		<div class="mcq">
-			<p>question: {{ question }}</p>
-			<p>translation: {{ translation }}</p>
-			<p v-for="(answer, i) in answers">{{ answer }} ({{ answerTranslations[i] }})
-				<span v-if="hasBeenSelected[i] && i == indexOfCorrect">correct!</span>
-				<span v-else-if="hasBeenSelected[i]">wrong :(</span>
-				<button v-else-if="!hasBeenSelected[i] && i == indexOfCorrect" v-on:click="revealAll()">CLICK MEH</button>
-				<button v-else v-on:click="$set(hasBeenSelected, i, true)">CLICK MEH</button>
-			</p>
+			<p>question: {{ question }} <span v-on:click="toggle = !toggle">(?)</span></p>
+			<p v-if="toggle">translation: {{ translation }}</p>
+			<view-mcq-answer v-for="(answer, i) in answers" v-bind:answer="answer" v-bind:answerTranslation="answerTranslations[i]" v-bind:isCorrect="i == indexOfCorrect"></view-mcq-answer>
 			<p>index of correct: {{ indexOfCorrect }}</p>
+		</div>
+	`
+});
+
+Vue.component("view-mcq-answer", {
+	props: ["answer", "answerTranslation", "isCorrect"],
+	data: function() {
+		return {
+			hasBeenSelected: false,
+			toggle: false
+		}
+	},
+	template: `
+		<div>
+			<p>{{ answer }} <span v-on:click="toggle = !toggle">(?)</span>
+					<span v-if="hasBeenSelected && isCorrect">correct!</span>
+					<span v-else-if="hasBeenSelected">wrong :(</span>
+					<button v-else-if="!hasBeenSelected && isCorrect" v-on:click="$parent.revealAll()">CLICK MEH</button>
+					<button v-else v-on:click="hasBeenSelected = true">CLICK MEH</button>
+			</p>
+			<p v-if="toggle">{{ answerTranslation }}</p>
 		</div>
 	`
 });
