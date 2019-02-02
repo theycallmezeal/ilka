@@ -44,7 +44,12 @@ Vue.component("edit-mcq", {
 			<p v-for="(answer, i) in answers">
 				<input :value="answer" @input="$root.updateAns(index, i, $event.target.value)">
 				<input :value="answerTranslations[i]" @input="$root.updateAnsTrans(index, i, $event.target.value)">
+				<button @click="$root.removeAnswer(index, i)">Remove</button>
 			</p>
+			<p>Correct Answer:
+			<select :value="indexOfCorrect" @selected="$emit('update:indexOfCorrect', $event.target.value)">
+				<option v-for="(answer, i) in answers" v-bind:value="i"> {{ answer }} </option>
+			</select>
 			<button @click="$root.addAnswer(index)">Add Answer</button>
 			<p>
 				<button v-bind:disabled="index == 0" @click="$root.moveUp(index)">Up</button>
@@ -68,6 +73,13 @@ var app = new Vue({
 			var mc = this.story.items[i];
 			mc.answers.push("new");
 			mc.answerTranslations.push("translate");
+		},
+		removeAnswer: function(i, question) {
+			var mc = this.story.items[i];
+			console.log(mc.answers);
+			mc.answers.splice(question, 1);
+			mc.answerTranslations.splice(question, 1);
+			console.log(mc.answers);
 		},
 		updateAns: function(index, question, val) {
 			var ans = this.story.items[index].answers;
