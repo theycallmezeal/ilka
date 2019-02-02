@@ -6,8 +6,8 @@ Vue.component("edit-story", {
 				<input v-model="storyObject.title">
 			</p>
 			<div v-for="item in storyObject.items">
-				<edit-passage v-if="item.type == 'passage'" v-bind:speaker="item.speaker" v-bind:text="item.text" v-bind:translation="item.translation"></edit-passage>
-				<edit-mcq v-if="item.type == 'mcq'" v-bind:question="item.question" v-bind:answers="item.answers" v-bind:indexOfCorrect="item.indexOfCorrect" v-bind:answerTranslations="item.answerTranslations"></edit-mcq>
+				<edit-passage v-if="item.type == 'passage'" :speaker.sync="item.speaker" :text.sync="item.text" :translation.sync="item.translation"></edit-passage>
+				<edit-mcq v-if="item.type == 'mcq'" :question.sync="item.question" :answers.sync="item.answers" :indexOfCorrect.sync="item.indexOfCorrect" :answerTranslations.sync="item.answerTranslations"></edit-mcq>
 			</div>
 		</div>
 	`
@@ -18,31 +18,50 @@ Vue.component("edit-passage", {
 	template: `
 		<div class="passage">
 			<p>speaker:
-			<input v-model="speaker">
+			<input :value="speaker" @input="$emit('update:speaker', $event.target.value)">
 			</p>
-			<input v-model="text">
-			Translation: <input v-model="translation">
+			<input :value="text" @input="$emit('update:text', $event.target.value)">
+			Translation: <input :value="translation" @input="$emit('update:translation', $event.target.value)" >
 		</div>
 	`
 });
 
 Vue.component("edit-mcq", {
 	props: ["question", "translation", "answers", "indexOfCorrect", "answerTranslations"],
+	methods: {
+		changeAnswer: function(i, val) {
+			this.$set(answers, i, val);
+			this.$emit('update:answers', this.answers);
+		},
+		removeAnswer: function (i) {
+			this.answers.splice(i, 1);
+			this.$emit('update:answers', this.answers);
+		},
+		addAnswer: function() {
+			this.answers.push('new');
+			this.$emit('update:answers', this.answers);
+		},
+		changeTrans: function(i, val) {
+			this.$set(answerTranslations, i, val);
+			this.$emit('update:answerTranslations', this.answerTranslations);
+		}
+	},
 	template: `
 		<div class="mcq">
 			<p>question:
-			<input v-model="question">
-			Translation: <input v-model="translation">
+			<input :value="question" @input="$emit('update:question', $event.target.value)">
+			Translation: <input :value="translation" @input="$emit('update:translation', $event.target.value)">
 			</p>
 			<p v-for="(answer, i) in answers">
+				{{ answer }}
 				<span v-if="i == indexOfCorrect">(correct!)</span>
-				<input v-model="answers[i]">
-				Translation: <input v-model="answerTranslations[i]">
-				<button v-on:click="answers.splice(i, 1)">Remove</button>
+				<input :value="answers[i]" @input="changeAnswer(i, $event.target.value)">
+				Translation: <input :value="answerTranslations[i]", @input="changeTrans(i, $event.target.value)">
+				<button v-on:click="removeAnswer(i)">Remove</button>
 			</p>
-			<button v-on:click="answers.push('new')">Add Answer</button>
+			<button v-on:click="addAnswer(i)">Add Answer</button>
 			<p>Correct Answer: {{ indexOfCorrect }}
-			<select v-model="indexOfCorrect">
+			<select :value="indexOfCorrect" @selected="$emit('update:indexOfCorrect', $event.target.value)">
 				<option v-for="(answer, i) in answers" v-bind:value="i">
 					{{ answer }}
 				</option>
