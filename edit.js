@@ -27,23 +27,11 @@ Vue.component("edit-passage", {
 });
 
 Vue.component("edit-mcq", {
-	props: ["question", "translation", "answers", "indexOfCorrect", "answerTranslations"],
+	props: ["question", "translation", "answers", "answerTranslations", "indexOfCorrect", ],
 	methods: {
-		changeAnswer: function(i, val) {
-			this.$set(answers, i, val);
-			this.$emit('update:answers', this.answers);
-		},
-		removeAnswer: function (i) {
-			this.answers.splice(i, 1);
-			this.$emit('update:answers', this.answers);
-		},
-		addAnswer: function() {
-			this.answers.push('new');
-			this.$emit('update:answers', this.answers);
-		},
-		changeTrans: function(i, val) {
-			this.$set(answerTranslations, i, val);
-			this.$emit('update:answerTranslations', this.answerTranslations);
+		updateAnswer: function(i, answer) {
+			this.$set(this.answers, i, answer);
+			this.$emit("update:answers", this.answers);
 		}
 	},
 	template: `
@@ -53,19 +41,7 @@ Vue.component("edit-mcq", {
 			Translation: <input :value="translation" @input="$emit('update:translation', $event.target.value)">
 			</p>
 			<p v-for="(answer, i) in answers">
-				{{ answer }}
-				<span v-if="i == indexOfCorrect">(correct!)</span>
-				<input :value="answers[i]" @input="changeAnswer(i, $event.target.value)">
-				Translation: <input :value="answerTranslations[i]", @input="changeTrans(i, $event.target.value)">
-				<button v-on:click="removeAnswer(i)">Remove</button>
-			</p>
-			<button v-on:click="addAnswer(i)">Add Answer</button>
-			<p>Correct Answer: {{ indexOfCorrect }}
-			<select :value="indexOfCorrect" @selected="$emit('update:indexOfCorrect', $event.target.value)">
-				<option v-for="(answer, i) in answers" v-bind:value="i">
-					{{ answer }}
-				</option>
-			</select>
+				<input :value="answer" @input="updateAnswer(i, $event.target.value)">
 			</p>
 		</div>
 	`
@@ -75,8 +51,13 @@ var app = new Vue({
 	el: "#app",
 	data: {
 		story: {
-			title: "",
-			items: []
-		},
+			title: "beepis",
+			items: [
+				new Passage("Georg", "lol your house is on fire", "lol dein Haus ist in Brand geraten"),
+				new Passage("Vicky", "dude wtf", "kerl was zum Teufel"),
+				new MCQ("Whose house is on fire?", "Wessen Haus ist in Brand geraten?", ["Georg", "Vicky", "Jack", "Alex", "AJ", "Jacob"], ["Georg", "Vicky", "Jack", "Alex", "AJ", "Jacob"], 0),
+				new Passage("Georg", "ayy lmao", "\u00e4yy lm\u00e4o")
+			]
+		}
 	},
 });
