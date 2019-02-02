@@ -1,11 +1,12 @@
 var jsonItems = null;
 
 class Passage {
-	constructor(speaker, text, translation) {
+	constructor(speaker, text, translation, ipa) {
 		this.type = "passage";
 		this.speaker = speaker;
 		this.text = text;
 		this.translation = translation;
+		this.ipa = ipa;
 	}
 }
 
