@@ -2,8 +2,9 @@ Vue.component("edit-story", {
 	props: ["storyObject"],
 	template: `
 		<div>
-			<p>title: {{ storyObject.title }}</p>
-			<input v-model="storyObject.title">
+			<p>title:
+				<input v-model="storyObject.title">
+			</p>
 			<div v-for="item in storyObject.items">
 				<edit-passage v-if="item instanceof Passage" v-bind:speaker="item.speaker" v-bind:text="item.text"></edit-passage>
 				<edit-mcq v-if="item instanceof MCQ" v-bind:question="item.question" v-bind:answers="item.answers" v-bind:indexOfCorrect="item.indexOfCorrect"></edit-mcq>
@@ -37,12 +38,13 @@ Vue.component("edit-mcq", {
 				<button v-on:click="answers.splice(i, 1)">Remove</button>
 			</p>
 			<button v-on:click="answers.push('new')">Add Answer</button>
-			<p>index of correct: {{ indexOfCorrect }}</p>
+			<p>Correct Answer: {{ indexOfCorrect }}
 			<select v-model="indexOfCorrect">
 				<option v-for="(answer, i) in answers" v-bind:value="i">
 					{{ answer }}
 				</option>
 			</select>
+			</p>
 		</div>
 	`
 });
