@@ -16,7 +16,7 @@ Vue.component("edit-story", {
 Vue.component("edit-passage", {
 	props: ["speaker", "text"],
 	template: `
-		<div>
+		<div class="passage">
 			<p>speaker:
 			<input v-model="speaker">
 			</p>
@@ -28,7 +28,7 @@ Vue.component("edit-passage", {
 Vue.component("edit-mcq", {
 	props: ["question", "answers", "indexOfCorrect"],
 	template: `
-		<div>
+		<div class="mcq">
 			<p>question:
 			<input v-model="question">
 			</p>

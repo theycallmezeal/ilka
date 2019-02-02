@@ -14,7 +14,7 @@ Vue.component("view-story", {
 Vue.component("view-passage", {
 	props: ["speaker", "text", "translation"],
 	template: `
-		<div>
+		<div class="passage">
 			<p>speaker: {{ speaker }}</p>
 			<p>{{ text }}</p>
 			<p>{{ translation }}</p>
@@ -37,7 +37,7 @@ Vue.component("view-mcq", {
 		}
 	},
 	template: `
-		<div>
+		<div class="mcq">
 			<p>question: {{ question }}</p>
 			<p>translation: {{ translation }}</p>
 			<p v-for="(answer, i) in answers">{{ answer }}
