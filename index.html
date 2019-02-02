@@ -5,9 +5,16 @@
 		<meta charset="utf/8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1">
 		<link rel="stylesheet" href="style.css">
+		<script src="https://unpkg.com/vue" defer></script>
 		<script src="script.js" defer></script>
 	</head>
 	<body>
-		<p>Ilka</p>
+		<div id="app">
+			<view-story title="lorem"></view-story>
+			
+			<view-passage speaker="Georg" text="lorem ipsum"></view-passage>
+			
+			<view-mcq question="Who started the fire?" v-bind:answers="['us', 'not us']" v-bind:index-of-correct="1"></view-mcq>
+		</div>
 	</body>
 </html>
