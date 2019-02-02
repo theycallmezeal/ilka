@@ -29,9 +29,9 @@ Vue.component("edit-passage", {
 Vue.component("edit-mcq", {
 	props: ["question", "translation", "answers", "answerTranslations", "indexOfCorrect", ],
 	methods: {
-		updateAnswer: function(i, answer) {
-			this.$set(this.answers, i, answer);
-			this.$emit("update:answers", this.answers);
+		updateArray: function(array, index, value, string) {
+			this.$set(array, index, value);
+			this.$emit(string, array);
 		}
 	},
 	template: `
@@ -41,7 +41,8 @@ Vue.component("edit-mcq", {
 			Translation: <input :value="translation" @input="$emit('update:translation', $event.target.value)">
 			</p>
 			<p v-for="(answer, i) in answers">
-				<input :value="answer" @input="updateAnswer(i, $event.target.value)">
+				<input :value="answer" @input="updateArray(this.answers, i, $event.target.value, 'update:answers')">
+				<input :value="answerTranslations[i]" @input="updateArray(this.answerTranslations, i, $event.target.value, 'update:answerTranslations')">
 			</p>
 		</div>
 	`
