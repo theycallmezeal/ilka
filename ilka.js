@@ -55,4 +55,5 @@ function load() {
 			}
 		}
 	}
+	app.storyUploaded = true;
 }

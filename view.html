@@ -5,6 +5,7 @@
 		<meta charset="utf/8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1">
 		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="view.css">
 		<script src="https://unpkg.com/vue" defer></script>
 		<script src="ilka.js" defer></script>
 		<script src="view.js" defer></script>
@@ -13,7 +14,10 @@
 		<div id="app">
 			<input type="file" multiple="false" id="file" onChange="load()">
 			<view-story v-bind:story-object="story"></view-story>
-			<p><button v-on:click="decProgress()">Previous</button><button v-on:click="incProgress()">Next</button></p>
+			<p v-if="storyUploaded">
+				<button v-on:click="decProgress()" v-bind:disabled="progress == 0">Previous</button>
+				<button v-on:click="incProgress()" v-bind:disabled="progress == story.items.length">Next</button>
+			</p>
 		</div>
 	</body>
 </html>
