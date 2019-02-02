@@ -61,4 +61,11 @@ var app = new Vue({
 			]
 		}
 	},
+	methods: {
+		addAnswer: function(i) {
+			var mc = this.story.items[i];
+			mc.answers.push("new");
+			mc.answerTranslations.push("translate");
+		}
+	}
 });
