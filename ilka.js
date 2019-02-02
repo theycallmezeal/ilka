@@ -17,7 +17,9 @@ Vue.prototype.Passage = Passage;
 Vue.prototype.MCQ = MCQ;
 
 function save() {
+
 }
+
 function load() {
 
 }
