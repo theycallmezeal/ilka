@@ -36,3 +36,18 @@
 .mcq-answer button {
 	box-sizing: border-box;
 }
+
+.translation {
+	color: var(--dark-accent);
+	background-color: var(--light-accent);
+	border: solid 1px var(--dark-accent);
+	border-radius: 5px;
+}
+
+p.translation {
+	padding: 10px;
+}
+
+span.translation {
+	padding: 5px;
+}

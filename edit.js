@@ -3,7 +3,7 @@ Vue.component("edit-story", {
 	template: `
 		<div>
 			<p>title:
-				<input v-model="storyObject.title">
+				<input type="text" v-model="storyObject.title">
 			</p>
 			<div v-for="(item, index) in storyObject.items">
 				<edit-passage v-if="item.type == 'passage'" v-bind:index="index" :speaker.sync="item.speaker" :text.sync="item.text" :translation.sync="item.translation" :ipa.sync="item.ipa"></edit-passage>
@@ -18,14 +18,14 @@ Vue.component("edit-passage", {
 	template: `
 		<div class="passage">
 			<p>speaker:
-			<input :value="speaker" @input="$emit('update:speaker', $event.target.value)">
+			<input type="text" :value="speaker" @input="$emit('update:speaker', $event.target.value)">
 			</p>
-			<input :value="text" @input="$emit('update:text', $event.target.value)">
+			<input type="text" :value="text" @input="$emit('update:text', $event.target.value)">
 			<p>
 			IPA:
-			<input :value="ipa" @input="$emit('update:ipa', $event.target.value)">
+			<input type="text" :value="ipa" @input="$emit('update:ipa', $event.target.value)">
 			</p>
-			Translation: <input :value="translation" @input="$emit('update:translation', $event.target.value)" >
+			Translation: <input type="text" :value="translation" @input="$emit('update:translation', $event.target.value)" >
 			<p>
 				<button v-bind:disabled="index == 0" @click="$root.moveUp(index)">Up</button>
 				<button v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">Down</button>
@@ -42,12 +42,12 @@ Vue.component("edit-mcq", {
 	template: `
 		<div class="mcq">
 			<p>question:
-			<input :value="question" @input="$emit('update:question', $event.target.value)">
-			Translation: <input :value="translation" @input="$emit('update:translation', $event.target.value)">
+			<input type="text" :value="question" @input="$emit('update:question', $event.target.value)">
+			Translation: <input type="text" :value="translation" @input="$emit('update:translation', $event.target.value)">
 			</p>
 			<p v-for="(answer, i) in answers">
-				<input :value="answer" @input="$root.updateAns(index, i, $event.target.value)">
-				<input :value="answerTranslations[i]" @input="$root.updateAnsTrans(index, i, $event.target.value)">
+				<input type="text" :value="answer" @input="$root.updateAns(index, i, $event.target.value)">
+				<input type="text" :value="answerTranslations[i]" @input="$root.updateAnsTrans(index, i, $event.target.value)">
 				<button @click="$root.removeAnswer(index, i)">Remove</button>
 			</p>
 			<p>Correct Answer:

@@ -7,6 +7,9 @@
 	--lightest-gray: #fafafa;
 	--gray: #666;
 	--dark-gray: #333;
+	
+	--light-accent: #d6fffc;
+	--dark-accent: #1c968d;
 }
 
 body {
@@ -17,6 +20,20 @@ body {
 	color: var(--dark-gray);
 }
 
-input, button {
+input, button, select {
 	font-family: var(--sans-fonts);
+}
+
+input[type="text"] {
+	padding: 5px;
+	border: solid 1px var(--gray);
+	border-radius: 5px;
+}
+
+button {
+	border: solid 1px var(--dark-accent);
+	color: var(--dark-accent);
+	border-radius: 5px;
+	background-color: var(--light-accent);
+	padding: 10px;
 }
