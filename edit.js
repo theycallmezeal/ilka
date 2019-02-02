@@ -7,7 +7,7 @@ Vue.component("edit-story", {
 			</p>
 			<div v-for="(item, index) in storyObject.items">
 				<edit-passage v-if="item.type == 'passage'"  :speaker.sync="item.speaker" :text.sync="item.text" :translation.sync="item.translation"></edit-passage>
-				<edit-mcq v-if="item.type == 'mcq'" v-bind:index="index" question.sync="item.question" :answers.sync="item.answers" :indexOfCorrect.sync="item.indexOfCorrect" :answerTranslations.sync="item.answerTranslations"></edit-mcq>
+				<edit-mcq v-if="item.type == 'mcq'" v-bind:index="index" :question.sync="item.question" :translation.sync="item.translation" :answers.sync="item.answers" :indexOfCorrect.sync="item.indexOfCorrect" :answerTranslations.sync="item.answerTranslations"></edit-mcq>
 			</div>
 		</div>
 	`
@@ -55,9 +55,8 @@ var app = new Vue({
 	},
 	methods: {
 		addAnswer: function(i) {
-			var mc = this.story.items[i]
-			mc.answers.push("new");
-			mc.answerTranslations.push("translate");
+			this.story.items[i].answers.push("new");
+			this.story.items[i].answerTranslations.push("translate");
 		},
 		updateAns: function(index, question, val) {
 			var ans = this.story.items[index].answers;
