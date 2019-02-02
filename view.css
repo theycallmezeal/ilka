@@ -33,8 +33,14 @@
 	margin-right: 0px;
 }
 
-.mcq-answer button {
-	box-sizing: border-box;
+.mcq-feedback-correct {
+	background-color: var(--light-correct);
+	color: var(--dark-correct);
+}
+
+.mcq-feedback-wrong {
+	background-color: var(--light-wrong);
+	color: var(--dark-wrong);
 }
 
 .translation {
