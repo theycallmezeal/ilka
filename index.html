@@ -10,6 +10,7 @@
 	</head>
 	<body>
 		<div id="app">
+			<p><button v-on:click="decProgress()">Previous</button><button v-on:click="incProgress()">Next</button></p>
 			<view-story v-bind:story-object="sampleStory"></view-story>
 		</div>
 	</body>

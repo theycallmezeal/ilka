@@ -21,7 +21,7 @@ Vue.component("view-story", {
 	template: `
 		<div>
 			<p>title: {{ storyObject.title }}</p>
-			<div v-for="item in storyObject.items">
+			<div v-for="item in this.$parent.visibleItems">
 				<view-passage v-if="item instanceof Passage" v-bind:speaker="item.speaker" v-bind:text="item.text"></view-passage>
 				<view-mcq v-if="item instanceof MCQ" v-bind:question="item.question" v-bind:answers="item.answers" v-bind:indexOfCorrect="item.indexOfCorrect"></view-mcq>
 			</div>
@@ -62,5 +62,29 @@ var app = new Vue({
 				new Passage("Georg", "ayy lmao")
 			]
 		},
+		
+		progress: 0
+	},
+	
+	methods: {
+		incProgress: function() {
+			if (this.progress + 1 < this.sampleStory.items.length) {
+				this.progress++;
+			}
+			console.log(this.progress);
+		},
+		
+		decProgress: function() {
+			if (this.progress - 1 >= 0) {
+				this.progress--;
+			}
+			console.log(this.progress);
+		}
+	},
+	
+	computed: {
+		visibleItems: function() {
+			return this.sampleStory.items.slice(0, this.progress);
+		}
 	}
 });
