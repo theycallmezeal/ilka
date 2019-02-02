@@ -4,7 +4,7 @@ Vue.component("view-story", {
 		<div>
 			<h1>{{ storyObject.title }}</h1>
 			<div v-for="item in this.$parent.visibleItems">
-				<view-passage v-if="item.type == 'passage'" v-bind:speaker="item.speaker" v-bind:text="item.text" v-bind:translation="item.translation"></view-passage>
+				<view-passage v-if="item.type == 'passage'" v-bind:speaker="item.speaker" v-bind:text="item.text" v-bind:translation="item.translation" v-bind:ipa="item.ipa"></view-passage>
 				<view-mcq v-if="item.type == 'mcq'" v-bind:question="item.question" v-bind:translation="item.translation" v-bind:answers="item.answers" v-bind:answerTranslations="item.answerTranslations" v-bind:indexOfCorrect="item.indexOfCorrect"></view-mcq>
 			</div>
 		</div>
@@ -12,7 +12,7 @@ Vue.component("view-story", {
 });
 
 Vue.component("view-passage", {
-	props: ["speaker", "text", "translation"],
+	props: ["speaker", "text", "translation", "ipa"],
 	data: function () {
 		return {
 			toggle: false
@@ -22,7 +22,8 @@ Vue.component("view-passage", {
 		<div class="passage">
 			<p class="passage-speaker">{{ speaker }}</p>
 			<p>{{ text }} <span @click="toggle = !toggle">&#127757;</span></p>
-			<p v-if="toggle" class="translation">{{ translation }}</p>
+			<p @click="$root.speak(ipa)">&#128266;</p>
+			<p v-if="toggle">{{ translation }}</p>
 		</div>
 	`
 });
@@ -97,7 +98,9 @@ var app = new Vue({
 				this.progress--;
 			}
 			console.log(this.progress);
-		}
+		},
+
+		speak: speak
 	},
 	
 	computed: {
