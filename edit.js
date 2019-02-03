@@ -22,9 +22,10 @@ Vue.component("edit-passage", {
 			</p>
 				<input placeholder="Text" type="text" :value="text" @input="$emit('update:text', $event.target.value)">
 			<p>
-				<input placeholder="IPA" type="text" :value="ipa" @input="$emit('update:ipa', $event.target.value)">
-			</p>
 				<input placeholder="Translation" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)" >
+			</p>
+				<input placeholder="IPA" type="text" :value="ipa" @input="$emit('update:ipa', $event.target.value)">
+
 			<div class="modify">
 				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
 				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
