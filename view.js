@@ -74,12 +74,23 @@ Vue.component("view-mcq-answer", {
 
 Vue.component("view-free-response", {
 	props: ["question", "translation", "suggested", "suggestedTranslation"],
+	data: function () {
+		return {
+			suggestedToggle: false,
+			translationToggle: false
+		}
+	},
 	template: `
 		<div class="view-free-response">
 			<p class="question">{{ question }}</p>
-			<input>
-			<p>suggested: {{ suggested }}</p>
-			<p>suggested translation: {{ suggestedTranslation }}</p>
+			<textarea></textarea>
+			<div class="free-response-suggested-gui">
+				<button v-on:click="suggestedToggle = !suggestedToggle">View suggested answer</button>
+				<div v-bind:class="['free-response-suggested', suggestedToggle ? '' : 'free-response-suggested-hidden']">
+					<p>{{ suggested }} <button class="icon-button" @click="translationToggle = !translationToggle">&#127757;</button></p>
+					<p v-if="translationToggle" class="translation">{{ translation }}</p>
+				</div>
+			</div>
 		</div>
 	`
 });

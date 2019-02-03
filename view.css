@@ -20,7 +20,7 @@
 	max-width: 400px;
 }
 
-.mcq-question {
+.question {
 	text-align: center;
 }
 
@@ -41,6 +41,39 @@
 .mcq-feedback-wrong {
 	background-color: var(--light-wrong);
 	color: var(--dark-wrong);
+}
+
+.view-free-response {
+	width: 100%;
+}
+
+.free-response-suggested-gui {
+	display: flex;
+	align-items: flex-start;
+}
+
+.free-response-suggested {
+	border: solid 1px var(--dark-gray);
+	border-radius: 5px;
+	padding: 10px;
+	margin-left: 10px;
+	background-color: white;
+	flex-grow: 1;
+}
+
+.free-response-suggested-hidden * {
+	visibility: hidden;
+}
+
+textarea {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: inherit;
+	width: 60%;
+	height: 150px;
+	margin-bottom: 10px;
+	border: solid 1px var(--dark-gray);
 }
 
 .translation {

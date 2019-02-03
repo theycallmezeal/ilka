@@ -8,6 +8,7 @@ Vue.component("edit-story", {
 			<div v-for="(item, index) in storyObject.items">
 				<edit-passage v-if="item.type == 'passage'" v-bind:index="index" :speaker.sync="item.speaker" :text.sync="item.text" :translation.sync="item.translation" :ipa.sync="item.ipa"></edit-passage>
 				<edit-mcq v-if="item.type == 'mcq'" v-bind:index="index" :question.sync="item.question" :translation.sync="item.translation" :answers.sync="item.answers" :indexOfCorrect.sync="item.indexOfCorrect" :answerTranslations.sync="item.answerTranslations"></edit-mcq>
+				<edit-free-response v-if="item.type == 'free-response'" v-bind:index="index" :question.sync="item.question" :translation.sync="item.translation" :suggested.sync="item.suggested" :suggestedTranslation.sync="item.suggestedTranslation"></edit-mcq>
 			</div>
 		</div>
 	`
@@ -20,12 +21,15 @@ Vue.component("edit-passage", {
 			<p>
 				<input placeholder="Speaker" type="text" :value="speaker" @input="$emit('update:speaker', $event.target.value)">
 			</p>
+			<p>
 				<input placeholder="Text" type="text" :value="text" @input="$emit('update:text', $event.target.value)">
+			</p>
 			<p>
 				<input placeholder="Translation" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)" >
 			</p>
+			<p>
 				<input placeholder="IPA" type="text" :value="ipa" @input="$emit('update:ipa', $event.target.value)">
-
+			</p>
 			<div class="modify">
 				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
 				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
@@ -65,6 +69,31 @@ Vue.component("edit-mcq", {
 	`
 });
 
+Vue.component("edit-free-response", {
+	props: ["question", "translation", "suggested", "suggestedTranslation"],
+	template: `
+		<div class="edit-free-response">
+			<p>
+				<input placeholder="Question" type="text" :value="question" @input="$emit('update:question', $event.target.value)">
+			</p>
+			<p>
+				<input placeholder="Translation" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)">
+			</p>
+			<p>
+				<input placeholder="Suggested answer" type="text" :value="suggested" @input="$emit('update:suggested', $event.target.value)">
+			</p>
+			<p>
+				<input placeholder="Suggested answer translation" type="text" :value="suggestedTranslation" @input="$emit('update:suggestedTranslation', $event.target.value)">
+			</p>
+			<div class="modify">
+				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
+				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
+				<button class="icon-button remove" @click="$root.remove(index)">&#10005;</button>
+			</div>
+		</div>
+	`
+});
+
 var app = new Vue({
 	el: "#app",
 	data: {
@@ -79,6 +108,9 @@ var app = new Vue({
 		},
 		addMCQ: function() {
 			this.story.items.push(new MCQ('', '', [''], [''], 0));
+		},
+		addFreeResponse: function() {
+			this.story.items.push(new FreeResponse('', '', '', ''));
 		},
 		addAnswer: function(i) {
 			var mc = this.story.items[i];
