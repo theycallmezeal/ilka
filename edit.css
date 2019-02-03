@@ -1,3 +1,15 @@
 .edit-passage, .edit-mcq {
 	border-top: 4px solid black;
 }
+
+input {
+	width: 66%;
+}
+
+.edit-mcq input {
+	width: 33%;
+}
+
+#title-input {
+	font-size: 200%;
+}

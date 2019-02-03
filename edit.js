@@ -3,7 +3,7 @@ Vue.component("edit-story", {
 	template: `
 		<div>
 			<p>
-				<input placeholder="Title" type="text" v-model="storyObject.title">
+				<input id="title-input" placeholder="Title" type="text" v-model="storyObject.title">
 			</p>
 			<div v-for="(item, index) in storyObject.items">
 				<edit-passage v-if="item.type == 'passage'" v-bind:index="index" :speaker.sync="item.speaker" :text.sync="item.text" :translation.sync="item.translation" :ipa.sync="item.ipa"></edit-passage>
@@ -26,10 +26,10 @@ Vue.component("edit-passage", {
 			</p>
 			<input placeholder="Translation" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)" >
 			<p>
-				<button v-bind:disabled="index == 0" @click="$root.moveUp(index)">Up</button>
-				<button v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">Down</button>
+				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
+				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
 			</p>
-			<p><button @click="$root.remove(index)">Remove</button></p>
+			<p><button class="icon-button" @click="$root.remove(index)">&#10005;</button></p>
 		</div>
 	`
 });
@@ -47,18 +47,18 @@ Vue.component("edit-mcq", {
 			<p v-for="(answer, i) in answers">
 				<input placeholder="Answer" type="text" :value="answer" @input="$root.updateAns(index, i, $event.target.value)">
 				<input placeholder="Translation" type="text" :value="answerTranslations[i]" @input="$root.updateAnsTrans(index, i, $event.target.value)">
-				<button @click="$root.removeAnswer(index, i)">Remove</button>
+				<button class="icon-button" @click="$root.removeAnswer(index, i)">&#10005;</button>
 			</p>
+			<p><button class="icon-button" @click="$root.addAnswer(index)">+</button></p>
 			<p>Correct Answer:
 			<select :value="indexOfCorrect" @selected="$emit('update:indexOfCorrect', $event.target.value)">
 				<option v-for="(answer, i) in answers" v-bind:value="i"> {{ answer }} </option>
 			</select>
-			<button @click="$root.addAnswer(index)">Add Answer</button>
 			<p>
-				<button v-bind:disabled="index == 0" @click="$root.moveUp(index)">Up</button>
-				<button v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">Down</button>
+				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
+				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
 			</p>
-			<p><button @click="$root.remove(index)">Remove</button></p>
+			<p><button class="icon-button" @click="$root.remove(index)">&#10005;</button></p>
 		</div>
 	`
 });
