@@ -6,6 +6,7 @@ Vue.component("view-story", {
 			<div v-for="item in this.$parent.visibleItems">
 				<view-passage v-if="item.type == 'passage'" v-bind:speaker="item.speaker" v-bind:text="item.text" v-bind:translation="item.translation" v-bind:ipa="item.ipa"></view-passage>
 				<view-mcq v-if="item.type == 'mcq'" v-bind:question="item.question" v-bind:translation="item.translation" v-bind:answers="item.answers" v-bind:answerTranslations="item.answerTranslations" v-bind:indexOfCorrect="item.indexOfCorrect"></view-mcq>
+				<view-free-response v-if="item.type == 'free-response'" v-bind:question="item.question" v-bind:translation="item.translation" v-bind:suggested="item.suggested" v-bind:suggestedTranslation="item.suggestedTranslation"></view-free-response>
 			</div>
 		</div>
 	`
@@ -43,8 +44,8 @@ Vue.component("view-mcq", {
 	},
 	template: `
 		<div class="mcq">
-			<p class="mcq-question">{{ question }} <button class="icon-button" @click="toggle = !toggle">&#127757;</button></p>
-			<p class="mcq-question translation" v-if="toggle">{{ translation }}</p>
+			<p class="question">{{ question }} <button class="icon-button" @click="toggle = !toggle">&#127757;</button></p>
+			<p class="question translation" v-if="toggle">{{ translation }}</p>
 			<view-mcq-answer v-for="(answer, i) in answers" v-bind:answer="answer" v-bind:answerTranslation="answerTranslations[i]" v-bind:isCorrect="i == indexOfCorrect"></view-mcq-answer>
 		</div>
 	`
@@ -67,6 +68,18 @@ Vue.component("view-mcq-answer", {
 				<button class="icon-button" v-else-if="!hasBeenSelected && isCorrect" @click="$parent.revealAll()">&#9711;</button>
 				<button class="icon-button" v-else @click="hasBeenSelected = true">&#9711;</button>
 			</p>
+		</div>
+	`
+});
+
+Vue.component("view-free-response", {
+	props: ["question", "translation", "suggested", "suggestedTranslation"],
+	template: `
+		<div class="view-free-response">
+			<p class="question">{{ question }}</p>
+			<input>
+			<p>suggested: {{ suggested }}</p>
+			<p>suggested translation: {{ suggestedTranslation }}</p>
 		</div>
 	`
 });

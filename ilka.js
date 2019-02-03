@@ -21,6 +21,16 @@ class MCQ {
 	}
 }
 
+class FreeResponse {
+	constructor(question, translation, suggested, suggestedTranslation) {
+		this.type = "free-response";
+		this.question = question;
+		this.translation = translation;
+		this.suggested = suggested;
+		this.suggestedTranslation = suggestedTranslation;
+	}
+}
+
 Vue.prototype.Passage = Passage;
 Vue.prototype.MCQ = MCQ;
 
