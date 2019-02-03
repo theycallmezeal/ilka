@@ -17,6 +17,7 @@
 		<div id="app">
 			<input type="file" multiple="false" id="file" onChange="load()">
 			<label id="file-label" for="file">Load</label>
+			<a id="link" href="edit.html"><button>Edit</button></a>
 			<view-story v-bind:story-object="story"></view-story>
 			<p v-if="storyUploaded">
 				<button class="icon-button" v-on:click="decProgress()" v-bind:disabled="progress == 0">&uarr;</button>
