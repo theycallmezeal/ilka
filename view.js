@@ -116,14 +116,12 @@ var app = new Vue({
 			if (this.progress + 1 <= this.story.items.length) {
 				this.progress++;
 			}
-			console.log(this.progress);
 		},
 		
 		decProgress: function() {
 			if (this.progress - 1 >= 0) {
 				this.progress--;
 			}
-			console.log(this.progress);
 		},
 
 		speak: speak

@@ -115,10 +115,8 @@ var app = new Vue({
 		},
 		removeAnswer: function(i, question) {
 			var mc = this.story.items[i];
-			console.log(mc.answers);
 			mc.answers.splice(question, 1);
 			mc.answerTranslations.splice(question, 1);
-			console.log(mc.answers);
 		},
 		updateAns: function(index, question, val) {
 			var ans = this.story.items[index].answers;
