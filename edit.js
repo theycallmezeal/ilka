@@ -54,26 +54,14 @@ Vue.component("edit-mcq", {
 				<input placeholder="Translation" type="text" :value="answerTranslations[i]" @input="$root.updateAnsTrans(index, i, $event.target.value)">
 				<button class="icon-button" @click="$root.removeAnswer(index, i)">&#10005;</button>
 			</p>
-<<<<<<< HEAD
-			<p><button class="icon-button" @click="$root.addAnswer(index)">+</button></p>
-			<p>Correct Answer:
-			<select :value="indexOfCorrect" @selected="$emit('update:indexOfCorrect', $event.target.value)">
-				<option v-for="(answer, i) in answers" v-bind:value="i"> {{ answer }} </option>
-			</select>
-=======
-				<button @click="$root.addAnswer(index)">Add Answer</button>
->>>>>>> 417dca555fc48711d3b41c3866cafdb4bccad7e5
+				<button @click="$root.addAnswer(index)">+</button>
 			<p>
 				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
 				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
 			</p>
-<<<<<<< HEAD
-			<p><button class="icon-button" @click="$root.remove(index)">&#10005;</button></p>
-=======
 			<p>
-				<button @click="$root.remove(index)">Remove</button>
+				<button class="icon-button" @click="$root.remove(index)">&#10005;</button>
 			</p>
->>>>>>> 417dca555fc48711d3b41c3866cafdb4bccad7e5
 		</div>
 	`
 });
