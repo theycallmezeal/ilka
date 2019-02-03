@@ -44,7 +44,7 @@ Vue.component("edit-mcq", {
 		<div class="edit-mcq">
 			<p>
 				<input placeholder="Question" type="text" :value="question" @input="$emit('update:question', $event.target.value)">
-				<input placeholder="Text" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)">
+				<input placeholder="Translation" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)">
 			</p>
 			<p v-for="(answer, i) in answers">
 				<input placeholder="Answer" type="text" :value="answer" @input="$root.updateAns(index, i, $event.target.value)">
