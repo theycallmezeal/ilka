@@ -49,11 +49,6 @@ Vue.component("edit-mcq", {
 				<input placeholder="Question" type="text" :value="question" @input="$emit('update:question', $event.target.value)">
 				<input placeholder="Translation" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)">
 			</p>
-			<p>
-				<select name="correct" :value="indexOfCorrect" @selected="$emit('update:indexOfCorrect', $event.target.value)">
-					<option v-for="(answer, i) in answers" v-bind:value="i"> {{ answer }} </option>
-				</select>
-			</p>
 			<p v-for="(answer, i) in answers">
 				<input name="correctIndex" type="radio" @click="indexOfCorrect=i">
 				<input placeholder="Answer" type="text" :value="answer" @input="$root.updateAns(index, i, $event.target.value)">
