@@ -16,7 +16,8 @@
 			<button type="button" @click="addPassage()">New Passage</button>
 			<button type="button" @click="addMCQ()">New Multiple-Choice Question</button>
 			<button onClick="save()">Save</button>
-			<input type="file" multiple="false" id="file" onChange="load()">
+			<input name="file" type="file" multiple="false" id="file" onChange="load()" />
+			<label class="icon-button" id="file-label" for="file">Load a Story</label>
 		</div>
 	</body>
 </html>

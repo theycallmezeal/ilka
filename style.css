@@ -27,7 +27,7 @@ body {
 	color: var(--dark-gray);
 }
 
-input, button, select {
+input, button, select, #file-label {
 	font-family: var(--sans-fonts);
 }
 
@@ -37,7 +37,17 @@ input[type="text"] {
 	border-radius: 5px;
 }
 
-button {
+/* https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/ */
+input[type="file"] {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+button, #file-label {
 	border: solid 1px var(--dark-gray);
 	color: var(--dark-gray);
 	border-radius: 5px;
