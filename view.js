@@ -60,14 +60,17 @@ Vue.component("view-mcq-answer", {
 		}
 	},
 	template: `
-		<div class="mcq-answer">
-			<p>{{ answer }} <button class="icon-button" @click="toggle = !toggle">&#127757;</button> <span v-if="toggle" class="translation">{{ answerTranslation }}</span></p>
-			<p>
-				<button class="icon-button mcq-feedback-correct" v-if="hasBeenSelected && isCorrect">&check;</button>
-				<button class="icon-button mcq-feedback-wrong" v-else-if="hasBeenSelected">&#10005;</button>
-				<button class="icon-button" v-else-if="!hasBeenSelected && isCorrect" @click="$parent.revealAll()">&#9711;</button>
-				<button class="icon-button" v-else @click="hasBeenSelected = true">&#9711;</button>
-			</p>
+		<div class="mcq-answer-wrapper">
+			<div class="mcq-answer">
+				<p>{{ answer }} <button class="icon-button" @click="toggle = !toggle">&#127757;</button></p>
+				<p>
+					<button class="icon-button mcq-feedback-correct" v-if="hasBeenSelected && isCorrect">&check;</button>
+					<button class="icon-button mcq-feedback-wrong" v-else-if="hasBeenSelected">&#10005;</button>
+					<button class="icon-button" v-else-if="!hasBeenSelected && isCorrect" @click="$parent.revealAll()">&#9711;</button>
+					<button class="icon-button" v-else @click="hasBeenSelected = true">&#9711;</button>
+				</p>
+			</div>
+			<p v-if="toggle" class="translation">{{ answerTranslation }}</p>
 		</div>
 	`
 });
@@ -83,12 +86,12 @@ Vue.component("view-free-response", {
 	template: `
 		<div class="view-free-response">
 			<p class="question">{{ question }}</p>
-			<textarea></textarea>
+			<textarea placeholder="Your response here..."></textarea>
 			<div class="free-response-suggested-gui">
 				<button v-on:click="suggestedToggle = !suggestedToggle">View suggested answer</button>
 				<div v-bind:class="['free-response-suggested', suggestedToggle ? '' : 'free-response-suggested-hidden']">
 					<p>{{ suggested }} <button class="icon-button" @click="translationToggle = !translationToggle">&#127757;</button></p>
-					<p v-if="translationToggle" class="translation">{{ translation }}</p>
+					<p v-if="translationToggle" class="translation">{{ suggestedTranslation }}</p>
 				</div>
 			</div>
 		</div>

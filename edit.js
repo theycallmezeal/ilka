@@ -70,7 +70,7 @@ Vue.component("edit-mcq", {
 });
 
 Vue.component("edit-free-response", {
-	props: ["question", "translation", "suggested", "suggestedTranslation"],
+	props: ["index", "question", "translation", "suggested", "suggestedTranslation"],
 	template: `
 		<div class="edit-free-response">
 			<p>
