@@ -60,11 +60,9 @@ function load() {
 		reader.onload = function (evt) {
             var j = JSON.parse(evt.target.result);
 			jsonItems = j.items;
-			console.log(jsonItems);
 			app.story.title = j.title;
 			app.story.items = [];
 			for (i in j.items) {
-				console.log("attempting to add " + j.items[i]);
 				app.story.items.push(j.items[i]);
 			}
 		}
