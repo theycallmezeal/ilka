@@ -52,8 +52,8 @@ Vue.component("edit-mcq", {
 				<button @click="$root.removeAnswer(index, i)">Remove</button>
 			</p>
 			<p>
-				Correct Answer:
-				<select :value="indexOfCorrect" @selected="$emit('update:indexOfCorrect', $event.target.value)">
+				<label for="correct">Correct Answer</label>
+				<select name="correct" :value="indexOfCorrect" @selected="$emit('update:indexOfCorrect', $event.target.value)">
 					<option v-for="(answer, i) in answers" v-bind:value="i"> {{ answer }} </option>
 				</select>
 			</p>
