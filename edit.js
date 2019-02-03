@@ -25,11 +25,11 @@ Vue.component("edit-passage", {
 				<input placeholder="IPA" type="text" :value="ipa" @input="$emit('update:ipa', $event.target.value)">
 			</p>
 				<input placeholder="Translation" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)" >
-			<p>
+			<div class="modify">
 				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
 				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
 				<button class="icon-button" @click="$root.remove(index)">&#10005;</button>
-			</p>
+			</div>
 		</div>
 	`
 });
@@ -55,11 +55,11 @@ Vue.component("edit-mcq", {
 				<button class="icon-button" @click="$root.removeAnswer(index, i)">&#10005;</button>
 			</p>
 				<button class="icon-button" @click="$root.addAnswer(index)">+</button>
-			<p>
+			<div class="modify">
 				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
 				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
 				<button class="icon-button" @click="$root.remove(index)">&#10005;</button>
-			</p>
+			</div>
 		</div>
 	`
 });
