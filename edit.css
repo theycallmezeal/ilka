@@ -19,11 +19,11 @@
 	padding-top: 10px;
 }
 
-input {
+input[type="text"] {
 	width: 66%;
 }
 
-.edit-mcq input {
+.edit-mcq input[type="text"] {
 	width: 33%;
 }
 
