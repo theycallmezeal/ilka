@@ -53,6 +53,9 @@ button, #file-label {
 	border-radius: 5px;
 	background-color: var(--light-gray);
 	padding: 10px;
+	font-size: 0.8em;
+	box-shadow: none;
+	font-weight: normal;
 }
 
 .icon-button {
