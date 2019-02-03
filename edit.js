@@ -50,7 +50,7 @@ Vue.component("edit-mcq", {
 				<input placeholder="Translation" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)">
 			</p>
 			<p v-for="(answer, i) in answers">
-				<input name="correctIndex" type="radio" :checked="i == indexOfCorrect" :value="i" @input="$emit('update:indexOfCorrect', $event.target.value)">
+				<input :name="answer" type="radio" :checked="i == indexOfCorrect" :value="i" @input="$emit('update:indexOfCorrect', $event.target.value)">
 				<input placeholder="Answer" type="text" :value="answer" @input="$root.updateAns(index, i, $event.target.value)">
 				<input placeholder="Translation" type="text" :value="answerTranslations[i]" @input="$root.updateAnsTrans(index, i, $event.target.value)">
 				<button class="icon-button" @click="$root.removeAnswer(index, i)">&#10005;</button>
