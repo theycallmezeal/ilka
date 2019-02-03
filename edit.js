@@ -29,7 +29,7 @@ Vue.component("edit-passage", {
 			<div class="modify">
 				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
 				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
-				<button class="icon-button" @click="$root.remove(index)">&#10005;</button>
+				<button class="icon-button remove" @click="$root.remove(index)">&#10005;</button>
 			</div>
 		</div>
 	`
@@ -59,7 +59,7 @@ Vue.component("edit-mcq", {
 			<div class="modify">
 				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
 				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
-				<button class="icon-button" @click="$root.remove(index)">&#10005;</button>
+				<button class="icon-button remove" @click="$root.remove(index)">&#10005;</button>
 			</div>
 		</div>
 	`
