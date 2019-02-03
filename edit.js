@@ -8,7 +8,7 @@ Vue.component("edit-story", {
 			<div v-for="(item, index) in storyObject.items">
 				<edit-passage v-if="item.type == 'passage'" v-bind:index="index" :speaker.sync="item.speaker" :text.sync="item.text" :translation.sync="item.translation" :ipa.sync="item.ipa"></edit-passage>
 				<edit-mcq v-if="item.type == 'mcq'" v-bind:index="index" :question.sync="item.question" :translation.sync="item.translation" :answers.sync="item.answers" :indexOfCorrect.sync="item.indexOfCorrect" :answerTranslations.sync="item.answerTranslations"></edit-mcq>
-				<edit-free-response v-if="item.type == 'free-response'" v-bind:index="index" :question.sync="item.question" :translation.sync="item.translation" :suggested.sync="item.suggested" :suggestedTranslation.sync="item.suggestedTranslation"></edit-mcq>
+				<edit-free-response v-if="item.type == 'free-response'" v-bind:index="index" :question.sync="item.question" :translation.sync="item.translation" :suggested.sync="item.suggested" :suggestedTranslation.sync="item.suggestedTranslation"></edit-free-response>
 			</div>
 		</div>
 	`
