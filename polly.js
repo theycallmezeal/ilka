@@ -14,12 +14,17 @@ function speak(text) {
 	};
 	polly.synthesizeSpeech(params, function(err, data) {
 		if (err) console.log(err, err.stack); // an error occurred
-		else     console.log(data);           // successful response
-});
-
+		else {
+			console.log(data);           // successful response
+			playaudio(data.AudioStream);
+		}
+	});
 }
 
-function playaudio(audio) {
+
+var audioElement = document.getElementById("audio");
+
+function playaudio(audioStream) {
 	var uInt8Array = new Uint8Array(audioStream);
 	var arrayBuffer = uInt8Array.buffer;
 	var blob = new Blob([arrayBuffer]);
