@@ -18,13 +18,13 @@ Vue.component("edit-passage", {
 	template: `
 		<div class="edit-passage">
 			<p>
-			<input placeholder="Speaker" type="text" :value="speaker" @input="$emit('update:speaker', $event.target.value)">
+				<input placeholder="Speaker" type="text" :value="speaker" @input="$emit('update:speaker', $event.target.value)">
 			</p>
-			<input placeholder="Text" type="text" :value="text" @input="$emit('update:text', $event.target.value)">
+				<input placeholder="Text" type="text" :value="text" @input="$emit('update:text', $event.target.value)">
 			<p>
-			<input placeholder="IPA" type="text" :value="ipa" @input="$emit('update:ipa', $event.target.value)">
+				<input placeholder="IPA" type="text" :value="ipa" @input="$emit('update:ipa', $event.target.value)">
 			</p>
-			<input placeholder="Translation" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)" >
+				<input placeholder="Translation" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)" >
 			<p>
 				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
 				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
@@ -41,24 +41,39 @@ Vue.component("edit-mcq", {
 	template: `
 		<div class="edit-mcq">
 			<p>
-			<input placeholder="Question" type="text" :value="question" @input="$emit('update:question', $event.target.value)">
-			<input placeholder="Text" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)">
+				<input placeholder="Question" type="text" :value="question" @input="$emit('update:question', $event.target.value)">
+				<input placeholder="Translation" type="text" :value="translation" @input="$emit('update:translation', $event.target.value)">
+			</p>
+			<p>
+				<select name="correct" :value="indexOfCorrect" @selected="$emit('update:indexOfCorrect', $event.target.value)">
+					<option v-for="(answer, i) in answers" v-bind:value="i"> {{ answer }} </option>
+				</select>
 			</p>
 			<p v-for="(answer, i) in answers">
 				<input placeholder="Answer" type="text" :value="answer" @input="$root.updateAns(index, i, $event.target.value)">
 				<input placeholder="Translation" type="text" :value="answerTranslations[i]" @input="$root.updateAnsTrans(index, i, $event.target.value)">
 				<button class="icon-button" @click="$root.removeAnswer(index, i)">&#10005;</button>
 			</p>
+<<<<<<< HEAD
 			<p><button class="icon-button" @click="$root.addAnswer(index)">+</button></p>
 			<p>Correct Answer:
 			<select :value="indexOfCorrect" @selected="$emit('update:indexOfCorrect', $event.target.value)">
 				<option v-for="(answer, i) in answers" v-bind:value="i"> {{ answer }} </option>
 			</select>
+=======
+				<button @click="$root.addAnswer(index)">Add Answer</button>
+>>>>>>> 417dca555fc48711d3b41c3866cafdb4bccad7e5
 			<p>
 				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
 				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
 			</p>
+<<<<<<< HEAD
 			<p><button class="icon-button" @click="$root.remove(index)">&#10005;</button></p>
+=======
+			<p>
+				<button @click="$root.remove(index)">Remove</button>
+			</p>
+>>>>>>> 417dca555fc48711d3b41c3866cafdb4bccad7e5
 		</div>
 	`
 });
