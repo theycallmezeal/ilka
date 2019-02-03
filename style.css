@@ -9,8 +9,8 @@
 	--gray: #666;
 	--dark-gray: #333;
 	
-	--light-accent: #d6fffc;
-	--dark-accent: #1c968d;
+	--light-accent: #d6edff;
+	--dark-accent: #1c6396;
 	
 	--light-correct: #b7f7d1;
 	--dark-correct: #0f8e43;
@@ -76,4 +76,6 @@ button, #file-label {
 	border-radius: 15px;
 	text-align: center;
 	vertical-align: center;
+	color: var(--dark-accent);
+	background-color: var(--light-accent);
 }
