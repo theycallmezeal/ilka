@@ -56,10 +56,10 @@ button, #file-label {
 	font-size: 0.8em;
 	box-shadow: none;
 	font-weight: normal;
+	cursor: pointer;
 }
 
 .icon-button {
-	cursor: pointer;
 	border: none;
 	font-weight: bold;
 	box-shadow: 1px 1px var(--gray);
