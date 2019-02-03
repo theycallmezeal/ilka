@@ -54,7 +54,7 @@ Vue.component("edit-mcq", {
 				<input placeholder="Translation" type="text" :value="answerTranslations[i]" @input="$root.updateAnsTrans(index, i, $event.target.value)">
 				<button class="icon-button" @click="$root.removeAnswer(index, i)">&#10005;</button>
 			</p>
-				<button @click="$root.addAnswer(index)">+</button>
+				<button class="icon-button" @click="$root.addAnswer(index)">+</button>
 			<p>
 				<button class="icon-button" v-bind:disabled="index == 0" @click="$root.moveUp(index)">&uarr;</button>
 				<button class="icon-button" v-bind:disabled="index == $parent.storyObject.items.length - 1" @click="$root.moveDown(index)">&darr;</button>
