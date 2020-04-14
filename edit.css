@@ -1,8 +1,9 @@
 .edit-passage, .edit-mcq, .edit-free-response {
-	border-bottom: 1px solid var(--dark-gray);
+	border-bottom: 1px solid var(--gray);
 	padding-bottom: 20px;
-	position: relative;
 	margin-bottom: 20px;
+
+	position: relative; /* allows absolute positioning of child elements */
 }
 
 .modify {

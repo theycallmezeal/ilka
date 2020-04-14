@@ -54,7 +54,7 @@
 }
 
 .free-response-suggested {
-	border: solid 1px var(--dark-gray);
+	box-shadow: 0px 1px 2px -2px var(--light-gray);
 	border-radius: 5px;
 	padding: 10px;
 	margin-left: 10px;
@@ -73,7 +73,8 @@ textarea {
 	box-sizing: border-box;
 	height: 150px;
 	margin-bottom: 10px;
-	border: solid 1px var(--dark-gray);
+	border: none;
+	box-shadow: 0px 1px 2px -2px var(--light-gray);
 	font-size: inherit;
 	border-radius: 5px;
 	padding: 10px;
@@ -82,14 +83,10 @@ textarea {
 .translation {
 	color: var(--dark-accent);
 	background-color: var(--light-accent);
-	border: solid 1px var(--dark-accent);
+	box-shadow: 0px 3px 2px -2px var(--gray);
 	border-radius: 5px;
 }
 
 p.translation {
 	padding: 10px;
-}
-
-span.translation {
-	padding: 5px;
 }

@@ -4,10 +4,10 @@
 	--sans-fonts: "Noto Sans", sans-serif;
 	--serif-fonts: "Noto Serif", serif;
 	
-	--lightest-gray: #fcfcfc;
-	--light-gray: #eee;
-	--gray: #666;
-	--dark-gray: #333;
+	--lightest-gray: #fafdff;
+	--light-gray: #e4eef5;
+	--gray: #a1b4bf;
+	--dark-gray: #283d4a;
 	
 	--light-accent: #d6edff;
 	--dark-accent: #1c6396;
@@ -42,7 +42,8 @@ input, button, select, #file-label {
 
 input[type="text"] {
 	padding: 5px;
-	border: solid 1px var(--gray);
+	border: none;
+	box-shadow: 0px 3px 2px -2px var(--gray);
 	border-radius: 5px;
 }
 
@@ -58,14 +59,16 @@ input[type="file"] {
 
 button, #file-label {
 	border: none;
-	box-shadow: 1px 1px var(--gray);
-	color: var(--dark-gray);
+	box-shadow: 0px 1px var(--gray);
+	color: var(--dark-accent);
 	border-radius: 5px;
-	background-color: var(--light-gray);
+	background-color: var(--light-accent);
 	padding: 10px;
 	font-size: 0.8em;
-	font-weight: normal;
+	font-weight: bold;
 	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: 1px;
 }
 
 .icon-button {
@@ -76,6 +79,4 @@ button, #file-label {
 	border-radius: 15px;
 	text-align: center;
 	vertical-align: center;
-	color: var(--dark-accent);
-	background-color: var(--light-accent);
 }
