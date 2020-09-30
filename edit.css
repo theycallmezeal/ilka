@@ -1,4 +1,4 @@
-.edit-passage, .edit-mcq, .edit-free-response {
+.item-form {
 	border-bottom: 1px solid var(--gray);
 	padding-bottom: 20px;
 	margin-bottom: 20px;
