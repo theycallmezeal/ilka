@@ -48,9 +48,9 @@
 						<input type="radio" v-model="item.indexOfCorrect" v-bind:value="i">
 						<input placeholder="Answer" type="text" v-model="item.answers[i]">
 						<input placeholder="Translation" type="text" v-model="item.answerTranslations[i]">
-						<button class="icon-button" @click="removeAnswer(index, i)">&#10005;</button>
+						<button class="icon-button" @click="removeMCQAnswer(index, i)" v-bind:disabled="item.answers.length <= 1">&#10005;</button>
 					</p>
-					<button class="icon-button" @click="addAnswer(index)">+</button>
+					<button class="icon-button" @click="addMCQAnswer(index)">+</button>
 					<div class="modify">
 						<button class="icon-button" v-bind:disabled="index == 0" @click="moveUp(index)">&uarr;</button>
 						<button class="icon-button" v-bind:disabled="index == story.items.length - 1" @click="moveDown(index)">&darr;</button>

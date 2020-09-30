@@ -108,23 +108,21 @@ var app = new Vue({
 		addFreeResponse: function() {
 			this.story.items.push(new FreeResponse('', '', '', ''));
 		},
-		addAnswer: function(i) {
-			var mc = this.story.items[i];
-			mc.answers.push("");
-			mc.answerTranslations.push("");
+		addMCQAnswer: function(mcqItemNumber) {
+			var mcq = this.story.items[mcqItemNumber];
+			mcq.answers.push("");
+			mcq.answerTranslations.push("");
 		},
-		removeAnswer: function(i, question) {
-			var mc = this.story.items[i];
-			mc.answers.splice(question, 1);
-			mc.answerTranslations.splice(question, 1);
-		},
-		updateAns: function(index, question, val) {
-			var ans = this.story.items[index].answers;
-			this.$set(ans, question, val);
-		},
-		updateAnsTrans: function(index, question, val) {
-			var ans = this.story.items[index].answerTranslations;
-			this.$set(ans, question, val);
+		removeMCQAnswer: function(mcqItemNumber, answerIndex) {
+			var mcq = this.story.items[mcqItemNumber];
+			if (mcq.answers.length == 1) {
+				return;
+			}
+			if (answerIndex <= mcq.indexOfCorrect && mcq.indexOfCorrect != 0) {
+				mcq.indexOfCorrect--;
+			}
+			mcq.answers.splice(answerIndex, 1);
+			mcq.answerTranslations.splice(answerIndex, 1);
 		},
 		moveUp: function(index) {
 			var temp = this.story.items[index - 1];
