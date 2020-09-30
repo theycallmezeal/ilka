@@ -12,7 +12,42 @@
 	</head>
 	<body>
 		<div id="app">
-			<edit-story v-bind:story-object="story"></edit-story>
+			<p>
+				<input id="title-input" placeholder="Title" type="text" v-model="story.title">
+			</p>
+			<div class="item-form" v-for="(item, index) in story.items">
+				<div v-if="item.type == 'passage'">
+					<p><input placeholder="Speaker" type="text" v-model="item.speaker"></p>
+					<p><input placeholder="Text" type="text" v-model="item.text"></p>
+					<p><input placeholder="Translation" type="text" v-model="item.translation"></p>
+					<p><input placeholder="IPA" type="text" v-model="item.ipa"></p>
+				</div>
+				<div v-if="item.type == 'free-response'">
+					<p><input placeholder="Question" type="text" v-model="item.question"></p>
+					<p><input placeholder="Translation" type="text" v-model="item.translation"></p>
+					<p><input placeholder="Suggested answer" type="text" v-model="item.suggested"></p>
+					<p><input placeholder="Suggested answer translation" type="text" v-model="item.suggestedTranslation"></p>
+				</div>
+				<div v-if="item.type == 'mcq'">
+					<p>mcq!</p>
+					<p>
+						<input placeholder="Question" type="text" v-model="item.question">
+						<input placeholder="Translation" type="text" v-model="item.translation">
+					</p>
+					<p v-for="(answer, i) in item.answers">
+						<input type="radio" v-model="item.indexOfCorrect" v-bind:value="i">
+						<input placeholder="Answer" type="text" v-model="item.answers[i]">
+						<input placeholder="Translation" type="text" v-model="item.answerTranslations[i]">
+						<button class="icon-button" @click="removeMCQAnswer(index, i)" v-bind:disabled="item.answers.length <= 1">&#10005;</button>
+					</p>
+					<button class="icon-button" @click="addMCQAnswer(index)">+</button>
+				</div>
+				<div class="modify">
+					<button class="icon-button" v-bind:disabled="index == 0" @click="moveUp(index)">&uarr;</button>
+					<button class="icon-button" v-bind:disabled="index == story.items.length - 1" @click="moveDown(index)">&darr;</button>
+					<button class="icon-button remove" @click="remove(index)">&#10005;</button>
+				</div>
+			</div>
 			<div class="button-bar">
 				<button type="button" @click="addPassage()">New Passage</button>
 				<button type="button" @click="addMCQ()">New Multiple-Choice Question</button>
