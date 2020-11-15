@@ -31,9 +31,6 @@ class FreeResponse {
 	}
 }
 
-Vue.prototype.Passage = Passage;
-Vue.prototype.MCQ = MCQ;
-
 // https://stackoverflow.com/a/30800715
 function downloadObjectAsJson(exportObj, exportName) {
 	var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
