@@ -69,13 +69,16 @@ app.component("view-mcq", {
 	props: ["question", "translation", "answers", "answerTranslations", "indexOfCorrect"],
 	data: function() {
 		return {
-			toggle: false
+			toggle: false,
+			isRevealed: new Array(this.answers.length).fill(false)
 		}
 	},
 	methods: {
-		revealAll: function() {
-			for (i in this.$children) {
-				this.$children[i].hasBeenSelected = true;
+		reveal: function(i) {
+			if (this.indexOfCorrect == i) {
+				this.isRevealed.fill(true);
+			} else {
+				this.isRevealed[i] = true;
 			}
 		}
 	},
@@ -83,16 +86,15 @@ app.component("view-mcq", {
 		<div class="mcq">
 			<p class="question">{{ question }} <button class="icon-button" @click="toggle = !toggle">&#127757;</button></p>
 			<p class="question translation" v-if="toggle">{{ translation }}</p>
-			<view-mcq-answer v-for="(answer, i) in answers" v-bind:answer="answer" v-bind:answerTranslation="answerTranslations[i]" v-bind:isCorrect="i == indexOfCorrect"></view-mcq-answer>
+			<view-mcq-answer v-on:reveal-event="reveal" v-for="(answer, i) in answers" v-bind:index="i" v-bind:answer="answer" v-bind:answerTranslation="answerTranslations[i]" v-bind:isCorrect="i == indexOfCorrect" v-bind:isRevealed="isRevealed[i]"></view-mcq-answer>
 		</div>
 	`
 });
 
 app.component("view-mcq-answer", {
-	props: ["answer", "answerTranslation", "isCorrect"],
+	props: ["index", "answer", "answerTranslation", "isCorrect", "isRevealed"],
 	data: function() {
 		return {
-			hasBeenSelected: false,
 			toggle: false
 		}
 	},
@@ -101,10 +103,9 @@ app.component("view-mcq-answer", {
 			<div class="mcq-answer">
 				<p>{{ answer }} <button class="icon-button" @click="toggle = !toggle">&#127757;</button></p>
 				<p>
-					<button class="icon-button mcq-feedback-correct" v-if="hasBeenSelected && isCorrect">&check;</button>
-					<button class="icon-button mcq-feedback-wrong" v-else-if="hasBeenSelected">&#10005;</button>
-					<button class="icon-button" v-else-if="!hasBeenSelected && isCorrect" @click="$parent.revealAll()">&#9711;</button>
-					<button class="icon-button" v-else @click="hasBeenSelected = true">&#9711;</button>
+					<button class="icon-button mcq-feedback-correct" v-if="isRevealed && isCorrect">&check;</button> <!-- right -->
+					<button class="icon-button mcq-feedback-wrong" v-else-if="isRevealed">&#10005;</button> <!-- wrong -->
+					<button class="icon-button" v-else @click="$emit('reveal-event', index)">&#9711;</button> <!-- not revealed -->
 				</p>
 			</div>
 			<p v-if="toggle" class="translation">{{ answerTranslation }}</p>
