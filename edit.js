@@ -1,9 +1,10 @@
-var app = new Vue({
-	el: "#app",
-	data: {
-		story: {
-			title: "",
-			items: []
+var app = Vue.createApp({
+	data: function () {
+		return {
+			story: {
+				title: "",
+				items: []
+			}
 		}
 	},
 	methods: {
@@ -47,3 +48,5 @@ var app = new Vue({
 		}
 	}
 });
+
+app = app.mount("#app");
