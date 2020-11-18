@@ -49,7 +49,7 @@ app.component("view-story", {
 	`
 });
 
-app.component("view-passage", {
+const ViewPassage = {
 	props: ["speaker", "text", "translation", "ipa"],
 	data: function() {
 		return {
@@ -63,9 +63,9 @@ app.component("view-passage", {
 			<p v-if="toggle" class="translation">{{ translation }}</p>
 		</div>
 	`
-});
+};
 
-app.component("view-mcq", {
+const ViewMCQ = {
 	props: ["question", "translation", "answers", "answerTranslations", "indexOfCorrect"],
 	data: function() {
 		return {
@@ -89,9 +89,9 @@ app.component("view-mcq", {
 			<view-mcq-answer v-on:reveal-event="reveal" v-for="(answer, i) in answers" v-bind:index="i" v-bind:answer="answer" v-bind:answerTranslation="answerTranslations[i]" v-bind:isCorrect="i == indexOfCorrect" v-bind:isRevealed="isRevealed[i]"></view-mcq-answer>
 		</div>
 	`
-});
+};
 
-app.component("view-mcq-answer", {
+const ViewMCQAnswer = {
 	props: ["index", "answer", "answerTranslation", "isCorrect", "isRevealed"],
 	data: function() {
 		return {
@@ -111,9 +111,9 @@ app.component("view-mcq-answer", {
 			<p v-if="toggle" class="translation">{{ answerTranslation }}</p>
 		</div>
 	`
-});
+};
 
-app.component("view-free-response", {
+const ViewFreeResponse = {
 	props: ["question", "translation", "suggested", "suggestedTranslation"],
 	data: function() {
 		return {
@@ -134,6 +134,14 @@ app.component("view-free-response", {
 			</div>
 		</div>
 	`
-});
+};
+
+app.component("view-passage", ViewPassage);
+
+app.component("view-mcq", ViewMCQ);
+
+app.component("view-mcq-answer", ViewMCQAnswer);
+
+app.component("view-free-response", ViewFreeResponse);
 
 app = app.mount("#app");
