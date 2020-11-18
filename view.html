@@ -18,7 +18,12 @@
 			<input type="file" multiple="false" id="file" onChange="load()">
 			<label id="file-label" for="file">Load</label>
 			<a id="link" href="edit.html"><button>Edit</button></a>
-			<view-story v-bind:story-object="story"></view-story>
+			<h1>{{ story.title }}</h1>
+			<div v-for="item in visibleItems">
+				<view-passage v-if="item.type == 'passage'" v-bind:speaker="item.speaker" v-bind:text="item.text" v-bind:translation="item.translation" v-bind:ipa="item.ipa"></view-passage>
+				<view-mcq v-if="item.type == 'mcq'" v-bind:question="item.question" v-bind:translation="item.translation" v-bind:answers="item.answers" v-bind:answer-translations="item.answerTranslations" v-bind:index-of-correct="item.indexOfCorrect"></view-mcq>
+				<view-free-response v-if="item.type == 'free-response'" v-bind:question="item.question" v-bind:translation="item.translation" v-bind:suggested="item.suggested" v-bind:suggested-translation="item.suggestedTranslation"></view-free-response>
+			</div>
 			<p v-if="storyUploaded">
 				<button class="icon-button" v-on:click="decProgress()" v-bind:disabled="progress == 0">&uarr;</button>
 				<button class="icon-button" v-on:click="incProgress()" v-bind:disabled="progress == story.items.length">&darr;</button>
